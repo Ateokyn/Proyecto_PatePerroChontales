@@ -29,12 +29,11 @@ public class Giras {
         this.id_emplG = id_emplG;
     }
 
-    public Giras(String nombre_gira, float precio_gira, float distancia_gira, Date fecha_gira, int id_emplG) {
+    public Giras(String nombre_gira, float precio_gira, float distancia_gira, Date fecha_gira) {
         this.nombre_gira = nombre_gira;
         this.precio_gira = precio_gira;
         this.distancia_gira = distancia_gira;
         this.fecha_gira = fecha_gira;
-        this.id_emplG = id_emplG;
     }
 
     public int getId_gira() {

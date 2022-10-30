@@ -13,12 +13,12 @@ import java.sql.Date;
  */
 public class Detalles_Reserva {
 
-    private int nunmeor_reservaP;
+    private int numero_reservaP;
     private int id_pR;
     private Date fecha_reserva;
 
-    public Detalles_Reserva(int nunmeor_reservaP, int id_pR, Date fecha_reserva) {
-        this.nunmeor_reservaP = nunmeor_reservaP;
+    public Detalles_Reserva(int numero_reservaP, int id_pR, Date fecha_reserva) {
+        this.numero_reservaP = numero_reservaP;
         this.id_pR = id_pR;
         this.fecha_reserva = fecha_reserva;
     }
@@ -27,12 +27,12 @@ public class Detalles_Reserva {
         this.fecha_reserva = fecha_reserva;
     }
 
-    public int getNunmeor_reservaP() {
-        return nunmeor_reservaP;
+    public int getNumero_reservaP() {
+        return numero_reservaP;
     }
 
-    public void setNunmeor_reservaP(int nunmeor_reservaP) {
-        this.nunmeor_reservaP = nunmeor_reservaP;
+    public void setNumero_reservaP(int nunmeor_reservaP) {
+        this.numero_reservaP = nunmeor_reservaP;
     }
 
     public int getId_pR() {

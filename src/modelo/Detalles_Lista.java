@@ -11,19 +11,19 @@ import java.sql.Date;
  *
  * @author Kentry Gutter
  */
-public class Detalle_Lista {
+public class Detalles_Lista {
 
     private int numero_listP;
     private int id_pL;
     private Date fecha_registro;
 
-    public Detalle_Lista(int numero_listP, int id_pL, Date fecha_registro) {
+    public Detalles_Lista(int numero_listP, int id_pL, Date fecha_registro) {
         this.numero_listP = numero_listP;
         this.id_pL = id_pL;
         this.fecha_registro = fecha_registro;
     }
 
-    public Detalle_Lista(Date fecha_registro) {
+    public Detalles_Lista(Date fecha_registro) {
         this.fecha_registro = fecha_registro;
     }
 
