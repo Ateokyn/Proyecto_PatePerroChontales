@@ -5,6 +5,12 @@
  */
 package vista;
 
+import modelo.*;
+import java.util.*;
+import javax.swing.table.DefaultTableModel;
+import java.sql.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Kentry Gutter
@@ -16,9 +22,57 @@ public class IntenalFrameGira extends javax.swing.JInternalFrame {
      */
     public IntenalFrameGira() {
         initComponents();
+        setTitle("Registrar Giras");
         jtxtIdGira.setEnabled(false);
         jtxtEncargado.setEnabled(false);
     }
+    
+    //Metodo para limpiar los campos.
+    public void LimpiarCampos(){
+        jtxtIdGira.setText("");
+        jtxtNombreGira.setText("");
+        jtxtDistanciaGira.setText("");
+        jtxtPrecioGira.setText("");
+        jtxtFechaGira.setText("");
+    }
+    
+    //Metodo para listar datos dentro de la tabla.
+    public void obtenerDatos(){
+        //Se crea un lista que almacena los datos obtenidos.
+        List<Giras> giras = new DAOGiras().ObtenerDatos(WIDTH); 
+        //Define un modelo para la tabla.
+        DefaultTableModel modelo = new DefaultTableModel();
+        //Arreglo con nombre de caolumnas de la tabla.
+        String[] columnas = {"id_gira", "Nombre Gira", "Precio Gira",
+            "Distancia Gira", "Fecha Gira"};
+        //Establece los nombres definidos de las columnas.
+        modelo.setColumnIdentifiers(columnas);
+        for(Giras gs:giras){
+            String[]renglon = {Integer.toString(gs.getId_gira()), gs.getNombre_gira(),
+            Float.toString(gs.getPrecio_gira()),
+            Float.toString(gs.getDistancia_gira()),
+            gs.getFecha_gira().toString()};
+            modelo.addRow(renglon);
+        }
+        jtableGiras.setModel(modelo);
+        }
+    
+    public void actualizarGira(){
+        int id = Integer.parseInt(this.jtxtIdGira.getText());
+        String nomG = this.jtxtNombreGira.getText();
+        float precG = Float.parseFloat(this.jtxtPrecioGira.getText());
+        float disG = Float.parseFloat(this.jtxtDistanciaGira.getText());
+        Date fecG = Date.valueOf(this.jtxtFechaGira.getText());
+        
+        DAOGiras daoG = new DAOGiras();
+        int res = daoG.Actualizar(id, nomG, precG, disG, fecG);
+        if(res == 1){
+            JOptionPane.showMessageDialog(rootPane, "Gira Actualizada.");
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Ocurrio un ERROR");
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,12 +103,12 @@ public class IntenalFrameGira extends javax.swing.JInternalFrame {
         btnBorrarGira = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtableGiras = new javax.swing.JTable();
 
         setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Giras", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(0, 0, 255))); // NOI18N
 
@@ -160,17 +214,37 @@ public class IntenalFrameGira extends javax.swing.JInternalFrame {
         btnAgregarGira.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnAgregarGira.setText("Agregar");
         btnAgregarGira.setPreferredSize(new java.awt.Dimension(79, 23));
+        btnAgregarGira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarGiraActionPerformed(evt);
+            }
+        });
 
         btnEditarGira.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnEditarGira.setText("Editar");
         btnEditarGira.setPreferredSize(new java.awt.Dimension(79, 23));
+        btnEditarGira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarGiraActionPerformed(evt);
+            }
+        });
 
         btnActualizarGira.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnActualizarGira.setText("Actualizar");
+        btnActualizarGira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarGiraActionPerformed(evt);
+            }
+        });
 
         btnBorrarGira.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnBorrarGira.setText("Borrar");
         btnBorrarGira.setPreferredSize(new java.awt.Dimension(79, 23));
+        btnBorrarGira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarGiraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -208,37 +282,23 @@ public class IntenalFrameGira extends javax.swing.JInternalFrame {
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Giras Registradas", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel3.setLayout(new javax.swing.OverlayLayout(jPanel3));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtableGiras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtableGiras);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jPanel3.add(jScrollPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -260,15 +320,85 @@ public class IntenalFrameGira extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarGiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarGiraActionPerformed
+        // TODO add your handling code here:
+        String gir = jtxtNombreGira.getText();
+        String prec = jtxtPrecioGira.getText();
+        String dist = jtxtDistanciaGira.getText();
+        String fechG = jtxtFechaGira.getText();
+        
+        if(gir.contentEquals("") || prec.contentEquals("")
+            || dist.contentEquals("") || fechG.contentEquals("")){
+            JOptionPane.showMessageDialog(rootPane, "Todos los campos son obligatorios.");
+        }else {
+            try {
+                Date fechg = Date.valueOf(fechG);
+                Giras gs =new DAOGiras().Insertar(gir, TOP_ALIGNMENT, TOP_ALIGNMENT, fechg);
+                JOptionPane.showMessageDialog(rootPane, "Registro agregado.");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(rootPane, "No se agrego al registro.");
+            }
+        }
+        obtenerDatos();
+        LimpiarCampos();
+    }//GEN-LAST:event_btnAgregarGiraActionPerformed
+
+    private void btnEditarGiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarGiraActionPerformed
+        // TODO add your handling code here:
+        int fila = this.jtableGiras.getSelectedRow();
+        
+        if(fila == -1){
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un regustro de la tabla.");
+        }else{
+            try {
+                int id = Integer.parseInt((String) this.jtableGiras.getValueAt(fila, 0).toString());
+                String  nomG = (String) this.jtableGiras.getValueAt(fila,1);
+                float precG = Float.parseFloat((String) this.jtableGiras.getValueAt(fila,2));
+                float distG = Float.parseFloat((String) this.jtableGiras.getValueAt(fila,3));
+                Date fecG = Date.valueOf((String) this.jtableGiras.getValueAt(fila,4). toString());
+                
+                jtxtIdGira.setText("");
+                jtxtNombreGira.setText("");
+                jtxtPrecioGira.setText("");
+                jtxtDistanciaGira.setText("");
+                jtxtFechaGira.setText(String.valueOf(fecG));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnEditarGiraActionPerformed
+
+    private void btnActualizarGiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarGiraActionPerformed
+        // TODO add your handling code here:
+        actualizarGira();
+        obtenerDatos();
+        LimpiarCampos();
+    }//GEN-LAST:event_btnActualizarGiraActionPerformed
+
+    private void btnBorrarGiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarGiraActionPerformed
+        // TODO add your handling code here:
+        int fila = this.jtableGiras.getSelectedRow();
+        
+        if(fila == -1){
+            JOptionPane.showMessageDialog(rootPane, "Seleccione unregistro de la tabla.");
+        }else{
+            int id = Integer.parseInt((String) this.jtableGiras.getValueAt(fila,0).toString());
+            DAOGiras dao = new DAOGiras();
+            dao.Eliminar(id);
+            obtenerDatos();
+        }
+    }//GEN-LAST:event_btnBorrarGiraActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -286,7 +416,7 @@ public class IntenalFrameGira extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jtableGiras;
     private javax.swing.JTextField jtxtDistanciaGira;
     private javax.swing.JTextField jtxtEncargado;
     private javax.swing.JTextField jtxtFechaGira;

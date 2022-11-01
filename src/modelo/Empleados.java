@@ -14,25 +14,25 @@ public class Empleados {
     private int id_empleado;
     private String nombre_emp;
     private String apellido_emp1;
-    private String apellido_emp2;
+    private String apellido_p2;
     private String depart_emp;
     private String telefono_emp;
     private int edad_emp;
 
-    public Empleados(int id_empleado, String nombre_emp, String apellido_emp1, String apellido_emp2, String depart_emp, String telefono_emp, int edad_emp) {
+    public Empleados(int id_empleado, String nombre_emp, String apellido_emp1, String apellido_p2, String depart_emp, String telefono_emp, int edad_emp) {
         this.id_empleado = id_empleado;
         this.nombre_emp = nombre_emp;
         this.apellido_emp1 = apellido_emp1;
-        this.apellido_emp2 = apellido_emp2;
+        this.apellido_p2 = apellido_p2;
         this.depart_emp = depart_emp;
         this.telefono_emp = telefono_emp;
         this.edad_emp = edad_emp;
     }
 
-    public Empleados(String nombre_emp, String apellido_emp1, String apellido_emp2, String depart_emp, String telefono_emp, int edad_emp) {
+    public Empleados(String nombre_emp, String apellido_emp1, String apellido_p2, String depart_emp, String telefono_emp, int edad_emp) {
         this.nombre_emp = nombre_emp;
         this.apellido_emp1 = apellido_emp1;
-        this.apellido_emp2 = apellido_emp2;
+        this.apellido_p2 = apellido_p2;
         this.depart_emp = depart_emp;
         this.telefono_emp = telefono_emp;
         this.edad_emp = edad_emp;
@@ -62,12 +62,12 @@ public class Empleados {
         this.apellido_emp1 = apellido_emp1;
     }
 
-    public String getApellido_emp2() {
-        return apellido_emp2;
+    public String getApellido_p2() {
+        return apellido_p2;
     }
 
-    public void setApellido_emp2(String apellido_emp2) {
-        this.apellido_emp2 = apellido_emp2;
+    public void setApellido_p2(String apellido_p2) {
+        this.apellido_p2 = apellido_p2;
     }
 
     public String getDepart_emp() {

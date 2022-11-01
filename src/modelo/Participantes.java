@@ -9,22 +9,22 @@ package modelo;
  *
  * @author Kentry Gutter
  */
-public class Lista_Participantes {
+public class Participantes {
 
     private int numero_list;
-    private String estado_p;
+    private String estado_part;
     private String estado_deposito;
     private String estado_transporte;
 
-    public Lista_Participantes(int numero_list, String estado_p, String estado_deposito, String estado_transporte) {
+    public Participantes(int numero_list, String estado_part, String estado_deposito, String estado_transporte) {
         this.numero_list = numero_list;
-        this.estado_p = estado_p;
+        this.estado_part = estado_part;
         this.estado_deposito = estado_deposito;
         this.estado_transporte = estado_transporte;
     }
 
-    public Lista_Participantes(String estado_p, String estado_deposito, String estado_transporte) {
-        this.estado_p = estado_p;
+    public Participantes(String estado_part, String estado_deposito, String estado_transporte) {
+        this.estado_part = estado_part;
         this.estado_deposito = estado_deposito;
         this.estado_transporte = estado_transporte;
     }
@@ -37,12 +37,12 @@ public class Lista_Participantes {
         this.numero_list = numero_list;
     }
 
-    public String getEstado_p() {
-        return estado_p;
+    public String getEstado_part() {
+        return estado_part;
     }
 
-    public void setEstado_p(String estado_p) {
-        this.estado_p = estado_p;
+    public void setEstado_part(String estado_part) {
+        this.estado_part = estado_part;
     }
 
     public String getEstado_deposito() {

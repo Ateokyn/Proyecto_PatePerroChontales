@@ -5,30 +5,35 @@
  */
 package modelo;
 
+import java.sql.Date;
+
 /**
  *
  * @author Kentry Gutter
  */
 public class Reservas {
 
-    private int numero_reserva;
+    private int n_reserva;
     private String estado_reserva;
+    private Date fecha_reserva;
 
-    public Reservas(int numero_reserva, String estado_reserva) {
-        this.numero_reserva = numero_reserva;
+    public Reservas(int n_reserva, String estado_reserva, java.sql.Date fecha_reserva) {
+        this.n_reserva = n_reserva;
         this.estado_reserva = estado_reserva;
+        this.fecha_reserva = fecha_reserva;
     }
 
-    public Reservas(String estado_reserva) {
+    public Reservas(String estado_reserva, Date fecha_reserva) {
         this.estado_reserva = estado_reserva;
+        this.fecha_reserva = fecha_reserva;
     }
 
-    public int getNumero_reserva() {
-        return numero_reserva;
+    public int getN_reserva() {
+        return n_reserva;
     }
 
-    public void setNumero_reserva(int numero_reserva) {
-        this.numero_reserva = numero_reserva;
+    public void setN_reserva(int n_reserva) {
+        this.n_reserva = n_reserva;
     }
 
     public String getEstado_reserva() {
@@ -37,6 +42,14 @@ public class Reservas {
 
     public void setEstado_reserva(String estado_reserva) {
         this.estado_reserva = estado_reserva;
+    }
+
+    public Date getFecha_reserva() {
+        return fecha_reserva;
+    }
+
+    public void setFecha_reserva(Date fecha_reserva) {
+        this.fecha_reserva = fecha_reserva;
     }
 
 }

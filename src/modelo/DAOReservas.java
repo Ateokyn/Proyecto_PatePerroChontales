@@ -4,55 +4,61 @@
  * and open the template in the editor.
  */
 package modelo;
-import java.sql.Date;
-import java.util.*;
 
+import java.util.*;
+import java.sql.Date;
 /**
  *
  * @author Kentry Gutter
  */
 public class DAOReservas {
-    
-    //Metodo para insertar datos en la BD.
-    public Reservas Insertar(String estado_reserva){
+    //Metodo para ubicar datos en la BD.
+    public Reservas Insertar(String estado_reserva, java.sql.Date fecha_reserva) {
+
         String transaccion = "INSERT INTO Reservas VALUES('"
-                + estado_reserva + "')";
-        
-        //llama al metodo Actualizar ubicado en DataBase.java.
-        if(new DataBase().Actualizar(transaccion)>0){
-            return new Reservas(estado_reserva);
+                + estado_reserva + "', '"
+                + fecha_reserva + "')";
+
+        //Llama al metodo Actualizar ubicado en DataBase.java.
+        if (new DataBase().Actualizar(transaccion) > 0) {
+            return new Reservas(estado_reserva, fecha_reserva);
         }
         return null;
     }
-    
-    //Metodo para actualizar un registro en la BD.
-    public int Actualizar(int id, String estado_reserva){
-        String transaccion = "UPDATE Reservas SET estado_reserva='"
-                + estado_reserva + "' WHERE numero_reserva="
+
+    //Metodo para actualizar un registro de las reservas en la BD.
+    public int Actualizar(int id, String estado_reserva, java.sql.Date fecha_reserva) {
+
+        String transaccion = "UPDATE Reservas SET estado_reserva'"
+                + estado_reserva + "' fecha_reserva='"
+                + fecha_reserva + "' WHERE n_reserva="
                 + id;
-        
+
         return new DataBase().Actualizar(transaccion);
     }
-    
-    //Metodo para seleccionar todos los registros de la tabla.
-    public List Obtenerdatos(){
+
+    //Metodo para seleccionar todos los registro de la tabla Reservas.
+    public List ObtenerDatos(int id) {
         String transaccion = "SELECT * FROM Reservas";
         //Llama al metodo Listar de DataBase.java.
         List<Map> registros = new DataBase().Listar(transaccion);
-        //Arreglo de reservas.
+        //Arreglo reservas.
         List<Reservas> reservas = new ArrayList();
-        //Ciclo que recorre cada registro y los agrega al arreglo reservas.
-        for(Map registro : registros){
-            Reservas rsr = new Reservas((int) registro.get("numero_reserva"),
-            (String) registro.get("estado_reserva"));
-            reservas.add(rsr);
+        //Ciclo que recorre cada registro del y loas agrega al arreglo reservas.
+        for (Map registro : registros) {
+            Reservas rv = new Reservas((int) registro.get("n_reserva"),
+                    (String) registro.get("estado_reserva"),
+                    (java.sql.Date) registro.get("fecha_reserva"));
+            
+            reservas.add(rv);
         }
-        return reservas;//Retorna todas las reservas ubicadas en la tabla BD.
+        //Retorno todos las giras ubicados en la tabla de BD.
+        return reservas;
     }
     
-    //Metodo para eliminar un registro de la tabla en la BD.
+    //Metodo para eliminar un registro de Reseva de la tabla de la BD.
     public int Eliminar(int id){
-        String transaccion = "DELETE FROM Reservas WHERE numero_reserva='" + id + "'";
+        String transaccion = "DELETE FROM n_reserva='" + id + "'";
         
         return new DataBase().Actualizar(transaccion);
     }
