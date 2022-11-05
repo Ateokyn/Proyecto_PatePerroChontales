@@ -18,20 +18,23 @@ public class Giras {
     private float precio_gira;
     private float distancia_gira;
     private Date fecha_gira;
+    private int id_emplG;
 
-    public Giras(int id_gira, String nombre_gira, float precio_gira, float distancia_gira, Date fecha_gira) {
+    public Giras(int id_gira, String nombre_gira, float precio_gira, float distancia_gira, Date fecha_gira, int id_emplG) {
         this.id_gira = id_gira;
         this.nombre_gira = nombre_gira;
         this.precio_gira = precio_gira;
         this.distancia_gira = distancia_gira;
         this.fecha_gira = fecha_gira;
+        this.id_emplG = id_emplG;
     }
 
-    public Giras(String nombre_gira, float precio_gira, float distancia_gira, Date fecha_gira) {
+    public Giras(String nombre_gira, float precio_gira, float distancia_gira, Date fecha_gira,int id_emplG) {
         this.nombre_gira = nombre_gira;
         this.precio_gira = precio_gira;
         this.distancia_gira = distancia_gira;
         this.fecha_gira = fecha_gira;
+        this.id_emplG = id_emplG;
     }
 
     public int getId_gira() {
@@ -72,6 +75,14 @@ public class Giras {
 
     public void setFecha_gira(Date fecha_gira) {
         this.fecha_gira = fecha_gira;
+    }
+
+    public int getId_emplG() {
+        return id_emplG;
+    }
+
+    public void setId_emplG(int id_emplG) {
+        this.id_emplG = id_emplG;
     }
 
 }

@@ -12,27 +12,31 @@ import java.util.*;
  */
 public class DAOParticipantes {
     //Metodo para ubicar datos en la BD.
-    public Participantes Insertar(String estado_part, String estadp_deposito, String estado_transporte) {
+    public Participantes Insertar(String nombre_part,String estado_part, String estado_deposito, String estado_transporte, int edad_part) {
 
         String transaccion = "INSERT INTO Participantes VALUES('"
+                + nombre_part + "', '"
                 + estado_part + "', '"
-                + estadp_deposito + "', '"
-                + estado_transporte + "')";
+                + estado_deposito + "', '"
+                + estado_transporte + "', '"
+                + edad_part + "')";
 
         //Llama al metodo Actualizar ubicado en DataBase.java.
         if (new DataBase().Actualizar(transaccion) > 0) {
-            return new Participantes(estado_part, estadp_deposito, estado_transporte);
+            return new Participantes(nombre_part, estado_part, estado_deposito, estado_transporte, edad_part);
         }
         return null;
     }
 
     //Metodo para actualizar un registro de las participantes en la BD.
-    public int Actualizar(int id, String estado_part, String estado_deposito, String estado_transporte) {
+    public int Actualizar(int id, String nombre_part, String estado_part, String estado_deposito, String estado_transporte, int edad_part) {
 
-        String transaccion = "UPDATE Participantes SET estado_part'"
+        String transaccion = "UPDATE Participantes SET nombre_part'"
+                + nombre_part + "' estado_part='"
                 + estado_part + "' estado_deposito='"
                 + estado_deposito + "' estado_transporte='"
-                + estado_transporte + "' WHERE numero_list="
+                + estado_transporte + "' edad_part='"
+                + edad_part + "' WHERE numero_list="
                 + id;
 
         return new DataBase().Actualizar(transaccion);
@@ -48,9 +52,11 @@ public class DAOParticipantes {
         //Ciclo que recorre cada registro del y loas agrega al arreglo participantes.
         for (Map registro : registros) {
             Participantes pt = new Participantes((int) registro.get("numero_list"),
+                    (String) registro.get("nombre_part"),
                     (String) registro.get("estado_part"),
                     (String) registro.get("estado_deposito"),
-                    (String) registro.get("estado_transporte"));
+                    (String) registro.get("estado_transporte"),
+                    (int) registro.get("edad_part"));
             
            participantes.add(pt);
         }
