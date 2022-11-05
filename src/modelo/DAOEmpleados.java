@@ -22,6 +22,7 @@ public class DAOEmpleados {
                 + apellido_emp1 + "', '"
                 + apellido_emp2 + "', '"
                 + depart_emp + "', '"
+                + telefono_emp + "', '"
                 + edad_emp + "')";
 
         //Llama al metodo Actualizar ubicado en DataBase.java.
@@ -33,12 +34,14 @@ public class DAOEmpleados {
 
     //Metodo para actualizar un registro del empleado en la BD.
     public int Actualizar(int id, String nombre_emp, String apellido_emp1, String apellido_emp2,
-            String depart_emp, int edad_emp) {
+            String depart_emp,String telefono_emp, int edad_emp) {
 
         String transaccion = "UPDATE Empleados SET nombre_emp'"
                 + nombre_emp + "' apellido_emp1='"
                 + apellido_emp1 + "' apellido_emp2='"
-                + depart_emp + "' edad_emp='"
+                + apellido_emp2 + "' depart_emp='"
+                + depart_emp + "' telefono_emp='"
+                + telefono_emp + "' edad_emp='"
                 + edad_emp + "' WHERE id_empleado="
                 + id;
 
@@ -46,7 +49,7 @@ public class DAOEmpleados {
     }
 
     //Metodo para seleccionar todos los registro de la tabla Empleados.
-    public List ObtenerDatos(int id) {
+    public List ObtenerDatos() {
         String transaccion = "SELECT * FROM Empleados";
         //Llama al metodo Listar de DataBase.java.
         List<Map> registros = new DataBase().Listar(transaccion);
@@ -54,13 +57,13 @@ public class DAOEmpleados {
         List<Empleados> empleados = new ArrayList();
         //Ciclo que recorre cada registro del y loas agrega al arreglo empleados.
         for (Map registro : registros) {
-            Empleados emp = new Empleados((int) registro.get("id_empleado"),
+            Empleados emp = new Empleados((Integer) registro.get("id_empleado"),
                     (String) registro.get("nombre_emp"),
                     (String) registro.get("apellido_emp1"),
                     (String) registro.get("apellido_emp2"),
                     (String) registro.get("depart_emp"),
                     (String) registro.get("telefono_emp"),
-                    (int) registro.get("edad_emp"));
+                    (Integer) registro.get("edad_emp"));
             
             empleados.add(emp);
         }

@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package controlador;
-
-import javax.swing.plaf.DesktopPaneUI;
 import vista.*;
 
 
@@ -15,7 +13,7 @@ import vista.*;
  */
 public class TourMDIOperadora extends javax.swing.JFrame {
 
-    private InternalFrameGiras Giras;
+    private InternalFrameGiras registroGiras;
     private InternalFrameCliente Cliente;
     private InternalFrameEmpleados Empleados;
     private InternalFrameReservas Reservas;
@@ -26,8 +24,8 @@ public class TourMDIOperadora extends javax.swing.JFrame {
     public TourMDIOperadora() {
         initComponents();
         setTitle("TOUR OPERADORA Pat e Perro");
-//        Giras = new InternalFrameGiras();
-//        desktopPane.add(Giras);
+        registroGiras = new InternalFrameGiras();
+        desktopPane.add(registroGiras);
         
         Cliente = new InternalFrameCliente();
         desktopPane.add(Cliente);
@@ -53,7 +51,9 @@ public class TourMDIOperadora extends javax.swing.JFrame {
     private void initComponents() {
 
         jSeparator7 = new javax.swing.JSeparator();
+        jMenuItem1 = new javax.swing.JMenuItem();
         desktopPane = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         btnVentanaGira = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
@@ -65,25 +65,34 @@ public class TourMDIOperadora extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JToolBar.Separator();
         btnVentanaParticipantes = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JToolBar.Separator();
+        jPanel2 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        menuGira = new javax.swing.JMenu();
+        menuitemGira = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setExtendedState(TourMDIOperadora.MAXIMIZED_BOTH);
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Accesos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+
         jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
+        jToolBar1.setBorder(new javax.swing.border.MatteBorder(null));
+        jToolBar1.setFloatable(false);
         jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jToolBar1.setRollover(true);
 
         btnVentanaGira.setBackground(new java.awt.Color(255, 255, 255));
-        btnVentanaGira.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnVentanaGira.setForeground(new java.awt.Color(0, 0, 255));
-        btnVentanaGira.setText("Gira");
+        btnVentanaGira.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnVentanaGira.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/montana.png"))); // NOI18N
+        btnVentanaGira.setText("Gira                 ");
         btnVentanaGira.setFocusPainted(false);
         btnVentanaGira.setFocusable(false);
-        btnVentanaGira.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnVentanaGira.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVentanaGira.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnVentanaGira.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnVentanaGira.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnVentanaGira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVentanaGiraActionPerformed(evt);
@@ -93,13 +102,12 @@ public class TourMDIOperadora extends javax.swing.JFrame {
         jToolBar1.add(jSeparator2);
 
         btnVentanaClientes.setBackground(new java.awt.Color(255, 255, 255));
-        btnVentanaClientes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnVentanaClientes.setForeground(new java.awt.Color(0, 0, 255));
-        btnVentanaClientes.setText("Clientes");
+        btnVentanaClientes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnVentanaClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/base-de-datos.png"))); // NOI18N
+        btnVentanaClientes.setText("Clientes           ");
         btnVentanaClientes.setFocusPainted(false);
         btnVentanaClientes.setFocusable(false);
-        btnVentanaClientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnVentanaClientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVentanaClientes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnVentanaClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVentanaClientesActionPerformed(evt);
@@ -109,13 +117,12 @@ public class TourMDIOperadora extends javax.swing.JFrame {
         jToolBar1.add(jSeparator1);
 
         btnVentanaEmpleados.setBackground(new java.awt.Color(255, 255, 255));
-        btnVentanaEmpleados.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnVentanaEmpleados.setForeground(new java.awt.Color(0, 0, 255));
-        btnVentanaEmpleados.setText("Empleados");
+        btnVentanaEmpleados.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnVentanaEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/servicio-al-cliente.png"))); // NOI18N
+        btnVentanaEmpleados.setText("Empleados      ");
         btnVentanaEmpleados.setFocusPainted(false);
         btnVentanaEmpleados.setFocusable(false);
-        btnVentanaEmpleados.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnVentanaEmpleados.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVentanaEmpleados.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnVentanaEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVentanaEmpleadosActionPerformed(evt);
@@ -125,13 +132,12 @@ public class TourMDIOperadora extends javax.swing.JFrame {
         jToolBar1.add(jSeparator3);
 
         btnVentanaReservas.setBackground(new java.awt.Color(255, 255, 255));
-        btnVentanaReservas.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnVentanaReservas.setForeground(new java.awt.Color(0, 0, 255));
+        btnVentanaReservas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnVentanaReservas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reservacion-en-linea.png"))); // NOI18N
         btnVentanaReservas.setText("Reservaciones");
         btnVentanaReservas.setFocusPainted(false);
         btnVentanaReservas.setFocusable(false);
         btnVentanaReservas.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnVentanaReservas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnVentanaReservas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVentanaReservasActionPerformed(evt);
@@ -141,11 +147,13 @@ public class TourMDIOperadora extends javax.swing.JFrame {
         jToolBar1.add(jSeparator4);
 
         btnVentanaParticipantes.setBackground(new java.awt.Color(255, 255, 255));
-        btnVentanaParticipantes.setForeground(new java.awt.Color(0, 51, 255));
-        btnVentanaParticipantes.setText("Participantes");
+        btnVentanaParticipantes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnVentanaParticipantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/diversidad.png"))); // NOI18N
+        btnVentanaParticipantes.setText("Participantes   ");
         btnVentanaParticipantes.setFocusable(false);
-        btnVentanaParticipantes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnVentanaParticipantes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVentanaParticipantes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnVentanaParticipantes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnVentanaParticipantes.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnVentanaParticipantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVentanaParticipantesActionPerformed(evt);
@@ -154,25 +162,60 @@ public class TourMDIOperadora extends javax.swing.JFrame {
         jToolBar1.add(btnVentanaParticipantes);
         jToolBar1.add(jSeparator5);
 
-        desktopPane.setLayer(jToolBar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+        );
+
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 477, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        desktopPane.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktopPane.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopPaneLayout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 532, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jMenu1.setText("File");
-        jMenu1.add(jSeparator6);
+        menuGira.setText("Acerca de");
 
-        jMenuBar1.add(jMenu1);
+        menuitemGira.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/servicio-al-cliente.png"))); // NOI18N
+        menuitemGira.setText("Desarrolladores");
+        menuGira.add(menuitemGira);
+
+        jMenuBar1.add(menuGira);
 
         setJMenuBar(jMenuBar1);
 
@@ -192,34 +235,32 @@ public class TourMDIOperadora extends javax.swing.JFrame {
 
     private void btnVentanaReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentanaReservasActionPerformed
         // TODO add your handling code here:
-        Reservas.obtenerDatos();
+//        Reservas.obtenerDatos();
         Reservas.setVisible(true);
        
     }//GEN-LAST:event_btnVentanaReservasActionPerformed
 
     private void btnVentanaEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentanaEmpleadosActionPerformed
         // TODO add your handling code here:
-        Empleados.obtenerDatos();
+//        Empleados.obtenerDatos();
         Empleados.setVisible(true);
     }//GEN-LAST:event_btnVentanaEmpleadosActionPerformed
 
     private void btnVentanaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentanaClientesActionPerformed
         // TODO add your handling code here:
-        Cliente.obtenerDatos();
+//        Cliente.obtenerDatos();
         Cliente.setVisible(true);
     }//GEN-LAST:event_btnVentanaClientesActionPerformed
 
     private void btnVentanaGiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentanaGiraActionPerformed
         // TODO add your handling code here:
-        Giras = new InternalFrameGiras();
-        desktopPane.add(Giras);
-        Giras.obtenerDatos();
-        Giras.setVisible(true);
+//        registroGiras.obtenerDatos();
+        registroGiras.setVisible(true);
     }//GEN-LAST:event_btnVentanaGiraActionPerformed
 
     private void btnVentanaParticipantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentanaParticipantesActionPerformed
         // TODO add your handling code here:
-        Participantes.obtenerDatos();
+//        Participantes.obtenerDatos();
         Participantes.setVisible(true);
     }//GEN-LAST:event_btnVentanaParticipantesActionPerformed
 
@@ -265,16 +306,19 @@ public class TourMDIOperadora extends javax.swing.JFrame {
     private javax.swing.JButton btnVentanaParticipantes;
     private javax.swing.JButton btnVentanaReservas;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JToolBar.Separator jSeparator5;
-    private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JMenu menuGira;
+    private javax.swing.JMenuItem menuitemGira;
     // End of variables declaration//GEN-END:variables
 
 }

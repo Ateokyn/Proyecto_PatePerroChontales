@@ -44,7 +44,7 @@ public class DAOCliente {
     }
 
     //Metodo para seleccionar todos los registro de la tabla Cliente.
-    public List ObtenerDatos(int id) {
+    public List ObtenerDatos() {
         String transaccion = "SELECT * FROM Cliente";
         //Llama al metodo Listar de DataBase.java.
         List<Map> registros = new DataBase().Listar(transaccion);
@@ -52,11 +52,11 @@ public class DAOCliente {
         List<Cliente> cliente = new ArrayList();
         //Ciclo que recorre cada registro del y loas agrega al arreglo cliente.
         for (Map registro : registros) {
-            Cliente ct = new Cliente((int) registro.get("id_cliente"),
+            Cliente ct = new Cliente((Integer) registro.get("id_cliente"),
                     (String) registro.get("nombre_c"),
                     (String) registro.get("apellido_c1"),
                     (String) registro.get("apellido_c2"),
-                    (int) registro.get("edad_c"),
+                    (Integer) registro.get("edad_c"),
                     (String) registro.get("depart_c"));
             
             cliente.add(ct);

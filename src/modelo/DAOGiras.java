@@ -6,7 +6,6 @@
 package modelo;
 
 import java.util.*;
-import java.sql.Date;
 /**
  *
  * @author Kentry Gutter
@@ -53,16 +52,16 @@ public class DAOGiras {
         List<Giras> giras = new ArrayList();
         //Ciclo que recorre cada registro del y loas agrega al arreglo giras.
         for (Map registro : registros) {
-            Giras grs = new Giras((int) registro.get("id_gira"),
+            Giras grs = new Giras((Integer) registro.get("id_gira"),
                     (String) registro.get("nombre_gira"),
-                    (float) registro.get("precio_gira"),
-                    (float) registro.get("distancia_gira"),
+                    (Float) registro.get("precio_gira"),
+                    (Float) registro.get("distancia_gira"),
                     (java.sql.Date) registro.get("fecha_gira"),
-                    (int) registro.get("id_emplG"));
+                    (Integer) registro.get("id_emplG"));
             
             giras.add(grs);
         }
-        //Retorno todos las giras ubicados en la tabla de BD.
+        //Retorno todos las giras ubicados en la t abla de BD.
         return giras;
     }
     

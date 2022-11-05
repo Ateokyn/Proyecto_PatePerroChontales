@@ -8,7 +8,6 @@ package vista;
 import modelo.*;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
-import java.sql.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +21,7 @@ public class InternalFrameEmpleados extends javax.swing.JInternalFrame {
      */
     public InternalFrameEmpleados() {
         initComponents();
+        setTitle("Registrar Empleados");
         jtxtIdEmpleado.setEnabled(false);
     }
 
@@ -39,7 +39,7 @@ public class InternalFrameEmpleados extends javax.swing.JInternalFrame {
     
     public void obtenerDatos(){
         
-        List<Empleados> empleados = new DAOEmpleados().ObtenerDatos(WIDTH);
+        List<Empleados> empleados = new DAOEmpleados().ObtenerDatos();
         
         DefaultTableModel modelo = new DefaultTableModel();
         
@@ -69,7 +69,7 @@ public class InternalFrameEmpleados extends javax.swing.JInternalFrame {
         
         DAOEmpleados dao = new DAOEmpleados();
         
-        int res = dao.Actualizar(id, nom, apd1, apd2, telp, edad);
+        int res = dao.Actualizar(id, nom, apd1, apd2, telp, dep, edad);
         
         if(res == 1){
             JOptionPane.showMessageDialog(rootPane, "Datos del empleado se actualizaron.");
@@ -389,7 +389,8 @@ public class InternalFrameEmpleados extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "Todos los campos son obligatorios.");
         }else{
             try {
-                Empleados em = new DAOEmpleados().Insertar(nomb, ape1, ape2, dep, tel,WIDTH);
+                int ed = Integer.valueOf(edad);
+                Empleados em = new DAOEmpleados().Insertar(nomb, ape1, ape2, dep, tel,ed);
                 JOptionPane.showMessageDialog(rootPane, "Registro Agregado.");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -409,13 +410,13 @@ public class InternalFrameEmpleados extends javax.swing.JInternalFrame {
             
         }else{
             try {
-                int id = Integer.parseInt((String) this.jtableEmpleados.getValueAt(fila, 0));
+                int id = Integer.parseInt((String) this.jtableEmpleados.getValueAt(fila, 0).toString());
                 String nom = (String) this.jtableEmpleados.getValueAt(fila, 1);
                 String ap1 = (String) this.jtableEmpleados.getValueAt(fila, 2);
                 String ap2 = (String) this.jtableEmpleados.getValueAt(fila, 3);
                 String dep = (String) this.jtableEmpleados.getValueAt(fila, 4);
                 String telf = (String) this.jtableEmpleados.getValueAt(fila, 5);
-                int edad = Integer.valueOf((String) this.jtableEmpleados.getValueAt(fila, 6));
+                int edad = Integer.valueOf((String) this.jtableEmpleados.getValueAt(fila, 6).toString());
                 
                 jtxtIdEmpleado.setText("" + id);
                 jtxtNombreEmpleado.setText(nom);

@@ -43,7 +43,7 @@ public class DAOParticipantes {
     }
 
     //Metodo para seleccionar todos los registro de la tabla Participantes.
-    public List ObtenerDatos(int id) {
+    public List ObtenerDatos() {
         String transaccion = "SELECT * FROM Participantes";
         //Llama al metodo Listar de DataBase.java.
         List<Map> registros = new DataBase().Listar(transaccion);
@@ -51,12 +51,12 @@ public class DAOParticipantes {
         List<Participantes> participantes = new ArrayList();
         //Ciclo que recorre cada registro del y loas agrega al arreglo participantes.
         for (Map registro : registros) {
-            Participantes pt = new Participantes((int) registro.get("numero_list"),
+            Participantes pt = new Participantes((Integer) registro.get("numero_list"),
                     (String) registro.get("nombre_part"),
                     (String) registro.get("estado_part"),
                     (String) registro.get("estado_deposito"),
                     (String) registro.get("estado_transporte"),
-                    (int) registro.get("edad_part"));
+                    (Integer) registro.get("edad_part"));
             
            participantes.add(pt);
         }
