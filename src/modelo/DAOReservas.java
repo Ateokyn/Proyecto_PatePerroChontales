@@ -30,11 +30,11 @@ public class DAOReservas {
     //Metodo para actualizar un registro de las reservas en la BD.
     public int Actualizar(int id, int id_clienter, int id_resergira, String estado_reserva, java.sql.Date fecha_reserva) {
 
-        String transaccion = "UPDATE Reservas SET id_clienter'"
-                + id_clienter + "' id_resergira='"
-                + id_resergira + "' estado_reserva='"
-                + estado_reserva + "' fecha_reserva='"
-                + fecha_reserva + "' WHERE n_reserva="
+        String transaccion = "UPDATE Reservas SET id_clienter='"
+                + id_clienter + "', id_resergira='"
+                + id_resergira + "', estado_reserva='"
+                + estado_reserva + "', fecha_reserva='"
+                + fecha_reserva + "', WHERE n_reserva="
                 + id;
 
         return new DataBase().Actualizar(transaccion);

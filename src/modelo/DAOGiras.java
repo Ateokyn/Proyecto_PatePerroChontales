@@ -32,7 +32,7 @@ public class DAOGiras {
     //Metodo para actualizar un registro de las giras en la BD.
     public int Actualizar(int id, String nombre_gira, float precio_gira, float distancia_gira, java.sql.Date fecha_gira,int id_emplG) {
 
-        String transaccion = "UPDATE Empleados SET nombre_gira'"
+        String transaccion = "UPDATE Empleados SET nombre_gira='"
                 + nombre_gira + "', precio_gira='"
                 + precio_gira + "', distancia_gira='"
                 + distancia_gira + "', fecha_gira='"

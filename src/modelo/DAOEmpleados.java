@@ -36,12 +36,12 @@ public class DAOEmpleados {
     public int Actualizar(int id, String nombre_emp, String apellido_emp1, String apellido_emp2,
             String depart_emp,String telefono_emp, int edad_emp) {
 
-        String transaccion = "UPDATE Empleados SET nombre_emp'"
-                + nombre_emp + "' apellido_emp1='"
-                + apellido_emp1 + "' apellido_emp2='"
-                + apellido_emp2 + "' depart_emp='"
-                + depart_emp + "' telefono_emp='"
-                + telefono_emp + "' edad_emp='"
+        String transaccion = "UPDATE Empleados SET nombre_emp='"
+                + nombre_emp + "', apellido_emp1='"
+                + apellido_emp1 + "', apellido_emp2='"
+                + apellido_emp2 + "', depart_emp='"
+                + depart_emp + "', telefono_emp='"
+                + telefono_emp + "', edad_emp='"
                 + edad_emp + "' WHERE id_empleado="
                 + id;
 

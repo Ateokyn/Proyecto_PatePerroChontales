@@ -32,11 +32,11 @@ public class DAOCliente {
     //Metodo para actualizar un registro de las cliente en la BD.
     public int Actualizar(int id, String nombre_c, String apellido_c1, String apellido_c2, int edad_c, String depart_c) {
 
-        String transaccion = "UPDATE Cliente SET nombre_c'"
-                + nombre_c + "' apellido_c1='"
-                + apellido_c1 + "' apellido_c2='"
-                + apellido_c2 + "' edad_c'"
-                + edad_c + "' depart_c'"
+        String transaccion = "UPDATE Cliente SET nombre_c='"
+                + nombre_c + "', apellido_c1='"
+                + apellido_c1 + "', apellido_c2='"
+                + apellido_c2 + "', edad_c='"
+                + edad_c + "', depart_c='"
                 + depart_c + "' WHERE id_cliente="
                 + id;
 

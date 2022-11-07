@@ -77,7 +77,7 @@ public class DataBase {
             Statement st = conexion.createStatement();
             rs = st.executeQuery(consulta);
             resultado = OrganizarDatos(rs);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("No se realizo la consulta.");
             e.printStackTrace();
         }
@@ -88,7 +88,7 @@ public class DataBase {
         try {
             CallableStatement cs = conexion.prepareCall("{call" + nombre + "}");
             return cs.execute();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;

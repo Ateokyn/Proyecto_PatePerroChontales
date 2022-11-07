@@ -76,7 +76,7 @@ public class TourMDIOperadora extends javax.swing.JFrame {
         setExtendedState(TourMDIOperadora.MAXIMIZED_BOTH);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Accesos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Accesos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 153))); // NOI18N
 
         jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar1.setBorder(new javax.swing.border.MatteBorder(null));
@@ -166,7 +166,7 @@ public class TourMDIOperadora extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,13 +174,13 @@ public class TourMDIOperadora extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pat'e Perro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 3, 18), new java.awt.Color(204, 255, 255))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 477, Short.MAX_VALUE)
+            .addGap(0, 469, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,32 +235,32 @@ public class TourMDIOperadora extends javax.swing.JFrame {
 
     private void btnVentanaReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentanaReservasActionPerformed
         // TODO add your handling code here:
-//        Reservas.obtenerDatos();
+        Reservas.obtenerDatos();
         Reservas.setVisible(true);
        
     }//GEN-LAST:event_btnVentanaReservasActionPerformed
 
     private void btnVentanaEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentanaEmpleadosActionPerformed
         // TODO add your handling code here:
-//        Empleados.obtenerDatos();
+        Empleados.obtenerDatos();
         Empleados.setVisible(true);
     }//GEN-LAST:event_btnVentanaEmpleadosActionPerformed
 
     private void btnVentanaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentanaClientesActionPerformed
         // TODO add your handling code here:
-//        Cliente.obtenerDatos();
+        Cliente.obtenerDatos();
         Cliente.setVisible(true);
     }//GEN-LAST:event_btnVentanaClientesActionPerformed
 
     private void btnVentanaGiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentanaGiraActionPerformed
         // TODO add your handling code here:
-//        registroGiras.obtenerDatos();
+        registroGiras.obtenerDatos();
         registroGiras.setVisible(true);
     }//GEN-LAST:event_btnVentanaGiraActionPerformed
 
     private void btnVentanaParticipantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentanaParticipantesActionPerformed
         // TODO add your handling code here:
-//        Participantes.obtenerDatos();
+        Participantes.obtenerDatos();
         Participantes.setVisible(true);
     }//GEN-LAST:event_btnVentanaParticipantesActionPerformed
 

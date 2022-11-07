@@ -31,7 +31,7 @@ public class DAOParticipantes {
     //Metodo para actualizar un registro de las participantes en la BD.
     public int Actualizar(int id, String nombre_part, String estado_part, String estado_deposito, String estado_transporte, int edad_part) {
 
-        String transaccion = "UPDATE Participantes SET nombre_part'"
+        String transaccion = "UPDATE Participantes SET nombre_part='"
                 + nombre_part + "' estado_part='"
                 + estado_part + "' estado_deposito='"
                 + estado_deposito + "' estado_transporte='"
