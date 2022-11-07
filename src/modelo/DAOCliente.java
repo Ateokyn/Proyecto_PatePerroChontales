@@ -15,7 +15,7 @@ public class DAOCliente {
     //Metodo para ubicar datos en la BD.
     public Cliente Insertar(String nombre_c, String apellido_c1, String apellido_c2, int edad_c, String depart_c) {
 
-        String transaccion = "INSERT INTO Cliente VALUES('"
+        String transaccion = "INSERT INTO CLIENTE VALUES('"
                 + nombre_c + "', '"
                 + apellido_c1 + "', '"
                 + apellido_c2 + "', '"
@@ -32,12 +32,12 @@ public class DAOCliente {
     //Metodo para actualizar un registro de las cliente en la BD.
     public int Actualizar(int id, String nombre_c, String apellido_c1, String apellido_c2, int edad_c, String depart_c) {
 
-        String transaccion = "UPDATE Cliente SET nombre_c='"
-                + nombre_c + "', apellido_c1='"
-                + apellido_c1 + "', apellido_c2='"
-                + apellido_c2 + "', edad_c='"
-                + edad_c + "', depart_c='"
-                + depart_c + "' WHERE id_cliente="
+        String transaccion = "UPDATE CLIENTE SET NOMBRE_C='"
+                + nombre_c + "', APELLIDO_C1='"
+                + apellido_c1 + "', APELLIDO_C2='"
+                + apellido_c2 + "', EDAD_C='"
+                + edad_c + "', DEPART_C='"
+                + depart_c + "' WHERE ID_CLIENTE="
                 + id;
 
         return new DataBase().Actualizar(transaccion);
@@ -45,19 +45,19 @@ public class DAOCliente {
 
     //Metodo para seleccionar todos los registro de la tabla Cliente.
     public List ObtenerDatos() {
-        String transaccion = "SELECT * FROM Cliente";
+        String transaccion = "SELECT * FROM CLIENTE";
         //Llama al metodo Listar de DataBase.java.
         List<Map> registros = new DataBase().Listar(transaccion);
         //Arreglo cliente.
         List<Cliente> cliente = new ArrayList();
         //Ciclo que recorre cada registro del y loas agrega al arreglo cliente.
         for (Map registro : registros) {
-            Cliente ct = new Cliente((Integer) registro.get("id_cliente"),
-                    (String) registro.get("nombre_c"),
-                    (String) registro.get("apellido_c1"),
-                    (String) registro.get("apellido_c2"),
-                    (Integer) registro.get("edad_c"),
-                    (String) registro.get("depart_c"));
+            Cliente ct = new Cliente((Integer) registro.get("ID_CLIENTE"),
+                    (String) registro.get("NOMBRE_C"),
+                    (String) registro.get("APELLIDO_C1"),
+                    (String) registro.get("APELLIDO_C2"),
+                    (Integer) registro.get("EDAD_C"),
+                    (String) registro.get("DEPART_C"));
             
             cliente.add(ct);
         }
@@ -67,7 +67,7 @@ public class DAOCliente {
     
     //Metodo para eliminar un registro de cliente de la tabla de la BD.
     public int Eliminar(int id){
-        String transaccion = "DELETE FROM id_cliente='" + id + "'";
+        String transaccion = "DELETE FROM ID_CLIENTE='" + id + "'";
         
         return new DataBase().Actualizar(transaccion);
     }

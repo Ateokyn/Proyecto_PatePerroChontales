@@ -15,7 +15,7 @@ import java.util.*;
 public class DataBase {
 
     //Cadena de conexion de la BD.
-    private final String URL = "jdbc:sqlserver://localhost:1433;dataName=Nombre;"
+    private final String URL = "jdbc:sqlserver://localhost:1433;dataName=PATE_PERRO;"
             + "integratedSecurity=true;" + "encrypt=true;trustServerCertificate=true";
 
     //Conexion con la BD.
@@ -77,7 +77,7 @@ public class DataBase {
             Statement st = conexion.createStatement();
             rs = st.executeQuery(consulta);
             resultado = OrganizarDatos(rs);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("No se realizo la consulta.");
             e.printStackTrace();
         }
@@ -102,4 +102,3 @@ public class DataBase {
         }
     }
 }
-

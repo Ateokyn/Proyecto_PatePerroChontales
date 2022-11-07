@@ -15,7 +15,7 @@ public class DAOGiras {
     public Giras Insertar(String nombre_gira, float precio_gira,
             float distancia_gira, java.sql.Date fecha_gira , int id_emplG) {
 
-        String transaccion = "INSERT INTO Giras VALUES('"
+        String transaccion = "INSERT INTO GIRAS VALUES('"
                 + nombre_gira + "', '"
                 + precio_gira + "', '"
                 + distancia_gira + "', '"
@@ -32,12 +32,12 @@ public class DAOGiras {
     //Metodo para actualizar un registro de las giras en la BD.
     public int Actualizar(int id, String nombre_gira, float precio_gira, float distancia_gira, java.sql.Date fecha_gira,int id_emplG) {
 
-        String transaccion = "UPDATE Empleados SET nombre_gira='"
-                + nombre_gira + "', precio_gira='"
-                + precio_gira + "', distancia_gira='"
-                + distancia_gira + "', fecha_gira='"
-                + fecha_gira + "', id_emplG='"
-                + id_emplG + "' WHERE id_gira="
+        String transaccion = "UPDATE GIRAS SET NOMBRE_GIRA='"
+                + nombre_gira + "', PRECIO_GIRA='"
+                + precio_gira + "', DISTANCIA_GIRA='"
+                + distancia_gira + "', FECHA_GIRA='"
+                + fecha_gira + "', ID_EMPLEADO='"
+                + id_emplG + "' WHERE ID_GIRA="
                 + id;
 
         return new DataBase().Actualizar(transaccion);
@@ -45,19 +45,19 @@ public class DAOGiras {
 
     //Metodo para seleccionar todos los registro de la tabla Giras.
     public List ObtenerDatos() {
-        String transaccion = "SELECT * FROM Giras";
+        String transaccion = "SELECT * FROM GIRAS";
         //Llama al metodo Listar de DataBase.java.
         List<Map> registros = new DataBase().Listar(transaccion);
         //Arreglo giras.
         List<Giras> giras = new ArrayList();
         //Ciclo que recorre cada registro del y loas agrega al arreglo giras.
         for (Map registro : registros) {
-            Giras grs = new Giras((Integer) registro.get("id_gira"),
-                    (String) registro.get("nombre_gira"),
-                    (Float) registro.get("precio_gira"),
-                    (Float) registro.get("distancia_gira"),
-                    (java.sql.Date) registro.get("fecha_gira"),
-                    (Integer) registro.get("id_emplG"));
+            Giras grs = new Giras((Integer) registro.get("ID_GIRA"),
+                    (String) registro.get("NOMBRE_GIRA"),
+                    (Float) registro.get("PRECIO_GIRA"),
+                    (Float) registro.get("DISTANCIA_GIRA"),
+                    (java.sql.Date) registro.get("FECHA_GIRA"),
+                    (Integer) registro.get("ID_EMPLEADO"));
             
             giras.add(grs);
         }
@@ -67,7 +67,7 @@ public class DAOGiras {
     
     //Metodo para eliminar un registro del empleado de la tabla de la BD.
     public int Eliminar(int id){
-        String transaccion = "DELETE FROM id_gira='" + id + "'";
+        String transaccion = "DELETE FROM ID_GIRA='" + id + "'";
         
         return new DataBase().Actualizar(transaccion);
     }

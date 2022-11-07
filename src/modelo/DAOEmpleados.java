@@ -17,7 +17,7 @@ public class DAOEmpleados {
     public Empleados Insertar(String nombre_emp, String apellido_emp1,
             String apellido_emp2, String depart_emp, String telefono_emp, int edad_emp) {
 
-        String transaccion = "INSERT INTO Empleados VALUES('"
+        String transaccion = "INSERT INTO EMPLEADOS VALUES('"
                 + nombre_emp + "', '"
                 + apellido_emp1 + "', '"
                 + apellido_emp2 + "', '"
@@ -36,13 +36,13 @@ public class DAOEmpleados {
     public int Actualizar(int id, String nombre_emp, String apellido_emp1, String apellido_emp2,
             String depart_emp,String telefono_emp, int edad_emp) {
 
-        String transaccion = "UPDATE Empleados SET nombre_emp='"
-                + nombre_emp + "', apellido_emp1='"
-                + apellido_emp1 + "', apellido_emp2='"
-                + apellido_emp2 + "', depart_emp='"
-                + depart_emp + "', telefono_emp='"
-                + telefono_emp + "', edad_emp='"
-                + edad_emp + "' WHERE id_empleado="
+        String transaccion = "UPDATE EMPLEADOS SET NOMBRE_EMP='"
+                + nombre_emp + "', APELLIDO_EMP1='"
+                + apellido_emp1 + "', APELLIDO_EMP2='"
+                + apellido_emp2 + "', DEPART_EMP='"
+                + depart_emp + "', TELEFONO_EMP='"
+                + telefono_emp + "', EDAD_EMP='"
+                + edad_emp + "' WHERE ID_EMPLEADO="
                 + id;
 
         return new DataBase().Actualizar(transaccion);
@@ -50,20 +50,20 @@ public class DAOEmpleados {
 
     //Metodo para seleccionar todos los registro de la tabla Empleados.
     public List ObtenerDatos() {
-        String transaccion = "SELECT * FROM Empleados";
+        String transaccion = "SELECT * FROM EMPLEADOS";
         //Llama al metodo Listar de DataBase.java.
         List<Map> registros = new DataBase().Listar(transaccion);
         //Arreglo empleados.
         List<Empleados> empleados = new ArrayList();
         //Ciclo que recorre cada registro del y loas agrega al arreglo empleados.
         for (Map registro : registros) {
-            Empleados emp = new Empleados((Integer) registro.get("id_empleado"),
-                    (String) registro.get("nombre_emp"),
-                    (String) registro.get("apellido_emp1"),
-                    (String) registro.get("apellido_emp2"),
-                    (String) registro.get("depart_emp"),
-                    (String) registro.get("telefono_emp"),
-                    (Integer) registro.get("edad_emp"));
+            Empleados emp = new Empleados((Integer) registro.get("ID_EMPLEADO"),
+                    (String) registro.get("NOMBRE_EMP"),
+                    (String) registro.get("APELLIDO_EMP1"),
+                    (String) registro.get("APELLIDO_EMP2"),
+                    (String) registro.get("DEPART_EMP"),
+                    (String) registro.get("TELEFONO_EMP"),
+                    (Integer) registro.get("EDAD_EMP"));
             
             empleados.add(emp);
         }
@@ -73,7 +73,7 @@ public class DAOEmpleados {
     
     //Metodo para eliminar un registro del empleado de la tabla de la BD.
     public int Eliminar(int id){
-        String transaccion = "DELETE FROM id_empleado='" + id + "'";
+        String transaccion = "DELETE FROM ID_EMPLEADO='" + id + "'";
         
         return new DataBase().Actualizar(transaccion);
     }

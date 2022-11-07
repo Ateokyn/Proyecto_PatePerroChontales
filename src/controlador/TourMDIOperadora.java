@@ -23,7 +23,7 @@ public class TourMDIOperadora extends javax.swing.JFrame {
      */
     public TourMDIOperadora() {
         initComponents();
-        setTitle("TOUR OPERADORA Pat e Perro");
+        setTitle("TOUR OPERADORA");
         registroGiras = new InternalFrameGiras();
         desktopPane.add(registroGiras);
         
