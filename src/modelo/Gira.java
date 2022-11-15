@@ -15,12 +15,12 @@ public class Gira {
 
      private int ID_GIRA;
     private String NOMBRE_GIRA;
-    private double PRECIO_GIRA;
+    private int PRECIO_GIRA;
     private double DISTANCIA_GIRA;
     private Date FECHA_GIRA;
     private int ID_EMPLEADO;
 
-    public Gira(int ID_GIRA, String NOMBRE_GIRA, double PRECIO_GIRA, double DISTANCIA_GIRA, Date FECHA_GIRA, int ID_EMPLEADO) {
+    public Gira(int ID_GIRA, String NOMBRE_GIRA, int PRECIO_GIRA, double DISTANCIA_GIRA, Date FECHA_GIRA, int ID_EMPLEADO) {
         this.ID_GIRA = ID_GIRA;
         this.NOMBRE_GIRA = NOMBRE_GIRA;
         this.PRECIO_GIRA = PRECIO_GIRA;
@@ -29,7 +29,7 @@ public class Gira {
         this.ID_EMPLEADO = ID_EMPLEADO;
     }
 
-    public Gira(String NOMBRE_GIRA, double PRECIO_GIRA, double DISTANCIA_GIRA, Date FECHA_GIRA, int ID_EMPLEADO) {
+    public Gira(String NOMBRE_GIRA, int PRECIO_GIRA, double DISTANCIA_GIRA, Date FECHA_GIRA, int ID_EMPLEADO) {
         this.NOMBRE_GIRA = NOMBRE_GIRA;
         this.PRECIO_GIRA = PRECIO_GIRA;
         this.DISTANCIA_GIRA = DISTANCIA_GIRA;
@@ -53,11 +53,11 @@ public class Gira {
         this.NOMBRE_GIRA = NOMBRE_GIRA;
     }
 
-    public double getPRECIO_GIRA() {
+    public int getPRECIO_GIRA() {
         return PRECIO_GIRA;
     }
 
-    public void setPRECIO_GIRA(double PRECIO_GIRA) {
+    public void setPRECIO_GIRA(int PRECIO_GIRA) {
         this.PRECIO_GIRA = PRECIO_GIRA;
     }
 

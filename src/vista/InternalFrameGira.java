@@ -52,7 +52,7 @@ public class InternalFrameGira extends javax.swing.JInternalFrame {
         for (Gira gs : gira) {
             String[] renglon = {Integer.toString(gs.getID_GIRA()),
                 gs.getNOMBRE_GIRA(),
-                Double.toString(gs.getPRECIO_GIRA()),
+                Integer.toString(gs.getPRECIO_GIRA()),
                 Double.toString(gs.getDISTANCIA_GIRA()),
                 gs.getFECHA_GIRA().toString(),
                 Integer.toString(gs.getID_EMPLEADO())};
@@ -65,7 +65,7 @@ public class InternalFrameGira extends javax.swing.JInternalFrame {
     public void actualizarGira() {
         int id = Integer.parseInt(this.jtxtIdGira.getText());
         String nomG = this.jtxtNombreGira.getText();
-        double precG = Double.parseDouble(this.jtxtPrecioGira.getText());
+        int precG = Integer.parseInt(this.jtxtPrecioGira.getText());
         double disG = Double.parseDouble(this.jtxtDistanciaGira.getText());
         Date fecG = Date.valueOf(this.jtxtFechaGira.getText());
         int id_emp = Integer.parseInt(this.jtxtEncargado.getText());
@@ -369,7 +369,7 @@ public class InternalFrameGira extends javax.swing.JInternalFrame {
         } else {
             try {
                 Date fechg = Date.valueOf(fechG);
-                double precio = Double.valueOf(prec);
+                int precio = Integer.valueOf(prec);
                 double distanci = Double.valueOf(dist);
                 int id_emple = Integer.valueOf(id_empl);
                 Gira gs = new DAOGIRA().Insertar(gir, precio, distanci, fechg, id_emple);
@@ -393,7 +393,7 @@ public class InternalFrameGira extends javax.swing.JInternalFrame {
             try {
                 int id = Integer.parseInt((String) this.JTableGiras.getValueAt(fila, 0).toString());
                 String nomG = (String) this.JTableGiras.getValueAt(fila, 1);
-                double precG = Double.parseDouble((String) this.JTableGiras.getValueAt(fila, 2).toString());
+                int precG = Integer.parseInt((String) this.JTableGiras.getValueAt(fila, 2).toString());
                 double distG = Double.parseDouble((String) this.JTableGiras.getValueAt(fila, 3).toString());
                 Date fecG = Date.valueOf((String) this.JTableGiras.getValueAt(fila, 4).toString());
                 int id_emp = Integer.parseInt((String) this.JTableGiras.getValueAt(fila, 5).toString());
