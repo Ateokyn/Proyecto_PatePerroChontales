@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package modelo;
 
 import java.util.*;
 import java.sql.Date;
@@ -14,7 +14,7 @@ import java.sql.Date;
  */
 public class DAOGIRA {
 
-    public Gira Insertar(String NOMBRE_GIRA, int PRECIO_GIRA, double DISTANCIA_GIRA, Date FECHA_GIRA, int ID_EMPLEADO) {
+    public Gira Insertar(String NOMBRE_GIRA, double PRECIO_GIRA, double DISTANCIA_GIRA, Date FECHA_GIRA, int ID_EMPLEADO) {
 
         String transacciones = "Insert Into GIRAS Values('"
                 + NOMBRE_GIRA + "','"
@@ -29,7 +29,7 @@ public class DAOGIRA {
         return null;
     }
 
-    public int Actualizar(int id, String NOMBRE_GIRA, int PRECIO_GIRA, double DISTANCIA_GIRA, Date FECHA_GIRA, int ID_EMPLEADO) {
+    public int Actualizar(int id, String NOMBRE_GIRA, double PRECIO_GIRA, double DISTANCIA_GIRA, Date FECHA_GIRA, int ID_EMPLEADO) {
 
         String transaccion = "Update GIRAS Set NOMBRE_GIRA='"
                 + NOMBRE_GIRA + "',PRECIO_GIRA='"
@@ -52,7 +52,7 @@ public class DAOGIRA {
         for (Map registro : registros) {
             Gira gr = new Gira((int) registro.get("ID_GIRA"),
                     (String) registro.get("NOMBRE_GIRA"),
-                    (int) registro.get("PRECIO_GIRA"),
+                    (double) registro.get("PRECIO_GIRA"),
                     (double) registro.get("DISTANCIA_GIRA"),
                     (Date) registro.get("FECHA_GIRA"),
                     (int) registro.get("ID_EMPLEADO"));

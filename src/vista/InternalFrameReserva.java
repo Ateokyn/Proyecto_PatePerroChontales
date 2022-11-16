@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package vista;
 
-import Modelo.DAORESERVA;
-import Modelo.Reserva;
+import modelo.DAORESERVA;
+import modelo.Reserva;
 import java.sql.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -30,7 +30,6 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
     public void LimpiarCampos() {
 
         jtxtIdReservaCliente.setText("");
-        comboEstadoReserva.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Ninguno", "Pago Pendiente", "Pago Realizado"}));
         jtxtFechaReserva.setText("");
         jtxtIdGiraReserva.setText("");
         jtxtNumeroReserva.setText("");
@@ -44,13 +43,12 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
 
         DefaultTableModel modelo = new DefaultTableModel();
 
-        String[] columnas = {"Nº Reserva", "Estado Reserva", "Fecha", "id_gira", "id_cliente"};
+        String[] columnas = {"Nº Reserva", "Fecha", "id_gira", "id_cliente"};
 
         modelo.setColumnIdentifiers(columnas);
 
         for (Reserva reser : reserva) {
             String[] renglon = {Integer.toString(reser.getN_RESERVA()),
-                reser.getESTADO_RESERVA(),
                 reser.getFECHA_RESERVA().toString(),
                 Integer.toString(reser.getID_GIRA()),
                 Integer.toString(reser.getID_CLIENTE())};
@@ -63,14 +61,13 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
 
     public void actualizarReserva() {
         int num = Integer.parseInt(this.jtxtNumeroReserva.getText());
-        String est = this.comboEstadoReserva.getSelectedItem().toString();
         Date fec = Date.valueOf(this.jtxtFechaReserva.getText());
         int idrg = Integer.parseInt(this.jtxtIdGiraReserva.getText());
         int idc = Integer.parseInt(this.jtxtIdReservaCliente.getText());
 
         DAORESERVA dao = new DAORESERVA();
 
-        int res = dao.Actualizar(num,est, fec, idrg, idc);
+        int res = dao.Actualizar(num, fec, idrg, idc);
 
         if (res == 1) {
             JOptionPane.showMessageDialog(rootPane, "Reserva Actualizada.");
@@ -89,18 +86,17 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jtxtNumeroReserva = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jtxtIdReservaCliente = new javax.swing.JTextField();
-        comboEstadoReserva = new javax.swing.JComboBox<>();
         jtxtIdGiraReserva = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jtxtFechaReserva = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         btnAgregarReserva = new javax.swing.JButton();
         btnEditarReserva = new javax.swing.JButton();
@@ -118,10 +114,6 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registrar Reservas", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(0, 0, 204))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel1.setText("Estado de reserva");
-
         jtxtNumeroReserva.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -133,8 +125,6 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
         jLabel3.setText("ID Cliente");
 
         jtxtIdReservaCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        comboEstadoReserva.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Pago Pendiente", "Pago Realizado" }));
 
         jtxtIdGiraReserva.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -149,42 +139,41 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
         jtxtFechaReserva.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtxtFechaReserva.setToolTipText("Año / Mes / Dia");
 
+        jLabel1.setFont(new java.awt.Font("Nirmala UI Semilight", 3, 12)); // NOI18N
+        jLabel1.setText("Part'e Perro");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(comboEstadoReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jtxtNumeroReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(39, 39, 39)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jtxtIdGiraReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel12))
-                                        .addGap(33, 33, 33)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jtxtIdReservaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel3))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtxtFechaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addGap(40, 40, 40))
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(37, 37, 37))))
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtxtNumeroReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jtxtIdGiraReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                                    .addComponent(jtxtIdReservaCliente)
+                                    .addComponent(jtxtFechaReserva))))
+                        .addGap(30, 30, Short.MAX_VALUE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(37, 37, 37))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,25 +182,25 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jtxtNumeroReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtFechaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtxtIdGiraReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtxtIdReservaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel12)
+                .addGap(18, 18, 18)
+                .addComponent(jtxtIdGiraReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jtxtIdReservaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(comboEstadoReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtxtFechaReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
@@ -262,7 +251,7 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBorrarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnActualizarReserva)
@@ -311,7 +300,7 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Título 1", "Título 2", "Título 3", "Título 4", "Título 5"
+                "Título 1", "Título 2", "Título 3", "Título 4"
             }
         ));
         jScrollPane1.setViewportView(jtableReservas);
@@ -325,7 +314,7 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
 
@@ -335,9 +324,9 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -349,10 +338,12 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -362,21 +353,18 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 //        String nreser = jtxtNumeroReserva.getText();
 
-        String estR = comboEstadoReserva.getSelectedItem().toString();
         String fecR = jtxtFechaReserva.getText();
         String idrg = jtxtIdGiraReserva.getText();
         String idcl = jtxtIdReservaCliente.getText();
 
-        if (fecR.contentEquals("") || estR.contentEquals("") || idcl.contentEquals("")
-                || idrg.contentEquals("")) {
+        if (fecR.contentEquals("") || idcl.contentEquals("")|| idrg.contentEquals("")) {
             JOptionPane.showMessageDialog(rootPane, "Todos los campos son obligatorios.");
         } else {
             try {
-                String estado = comboEstadoReserva.getSelectedItem().toString();
                 Date fech = Date.valueOf(fecR);
                 int idrv = Integer.valueOf(idrg);
                 int idc = Integer.valueOf(idcl);
-                Reserva rs = new DAORESERVA().Insertar(estado, fech, idrv, idc);
+                Reserva rs = new DAORESERVA().Insertar(fech, idrv, idc);
                 JOptionPane.showMessageDialog(rootPane, "Reserva agregada.");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -397,13 +385,11 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
             try {
                 
                 int num = Integer.parseInt((String) this.jtableReservas.getValueAt(fila, 0).toString());
-                String est = jtableReservas.getValueAt(fila, 1).toString();
-                Date fec = Date.valueOf((String) jtableReservas.getValueAt(fila, 2));
-                int idrgi = Integer.parseInt((String) this.jtableReservas.getValueAt(fila, 3).toString());
-                int idcl = Integer.parseInt((String) this.jtableReservas.getValueAt(fila, 4).toString());
+                Date fec = Date.valueOf((String) jtableReservas.getValueAt(fila, 1));
+                int idrgi = Integer.parseInt((String) this.jtableReservas.getValueAt(fila, 2).toString());
+                int idcl = Integer.parseInt((String) this.jtableReservas.getValueAt(fila, 3).toString());
 
                 jtxtNumeroReserva.setText("" + num);
-                comboEstadoReserva.setSelectedItem(String.valueOf(est));
                 jtxtFechaReserva.setText(String.valueOf(fec));
                 jtxtIdGiraReserva.setText(String.valueOf(idrgi));
                 jtxtIdReservaCliente.setText(String.valueOf(idcl));
@@ -440,7 +426,6 @@ public class InternalFrameReserva extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAgregarReserva;
     private javax.swing.JButton btnBorrarReserva;
     private javax.swing.JButton btnEditarReserva;
-    private javax.swing.JComboBox<String> comboEstadoReserva;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;

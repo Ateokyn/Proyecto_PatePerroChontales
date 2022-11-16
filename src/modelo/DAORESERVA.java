@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package modelo;
 
 import java.util.*;
 /**
@@ -12,22 +12,20 @@ import java.util.*;
  */
 public class DAORESERVA {
     
-    public Reserva Insertar(String ESTADO_RESERVA, java.sql.Date FECHA_RESERVA,int ID_GIRA,int ID_CLIENTE){
+    public Reserva Insertar(java.sql.Date FECHA_RESERVA,int ID_GIRA,int ID_CLIENTE){
         String transacciones = "Insert Into RESERVAS Values('"
-                + ESTADO_RESERVA + "','"
                 + FECHA_RESERVA + "','"
                 + ID_GIRA + "','"
                 + ID_CLIENTE + "')";
         
         if(new DataBase().Actualizar(transacciones) > 0){
-            return new Reserva(ESTADO_RESERVA, FECHA_RESERVA, ID_GIRA, ID_CLIENTE);
+            return new Reserva(FECHA_RESERVA, ID_GIRA, ID_CLIENTE);
         }
         return null;
     }
     
-    public int Actualizar(int id, String ESTADO_RESERVA,java.sql.Date FECHA_RESERVA, int ID_GIRA, int ID_CLIENTE){
-        String transaccion = "Update RESERVAS Set ESTADO_RESERVA='"
-                + ESTADO_RESERVA + "', FECHA_RESERVA='"
+    public int Actualizar(int id,java.sql.Date FECHA_RESERVA, int ID_GIRA, int ID_CLIENTE){
+        String transaccion = "Update RESERVAS Set FECHA_RESERVA='"
                 + FECHA_RESERVA + "', ID_GIRA='"
                 + ID_GIRA + "', ID_CLIENTE='"
                 + ID_CLIENTE + "' Where N_RESERVA="
@@ -44,7 +42,6 @@ public class DAORESERVA {
         
         for(Map registro : registros){
             Reserva reser = new Reserva((int) registro.get("N_RESERVA"),
-            (String) registro.get("ESTADO_RESERVA"),
             (java.sql.Date) registro.get("FECHA_RESERVA"),
             (int) registro.get("ID_GIRA"),
             (int) registro.get("ID_CLIENTE"));

@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package vista;
 
-import Modelo.DAOEMPLEADO;
-import Modelo.Empleado;
+import java.sql.Date;
+import modelo.DAOEMPLEADO;
+import modelo.Empleado;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,7 +30,8 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
      public void LimpiarCampos() {
         
         jtxtIdEmpleado.setText("");
-        jtxtNombreEmpleado.setText("");
+        jtxtNombreEmpleado1.setText("");
+        jtxtNombreEmpleado2.setText("");
         jtxtApellido1Empleado.setText("");
         jtxtApellido2Empleado.setText("");
         jtxtDepartamentoEmpleado.setText("");
@@ -44,15 +46,15 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
         
         DefaultTableModel modelo = new DefaultTableModel();
         
-        String[] columnas = {"id_Empleado","Nombre Empleado", "Apellido Paterno", "Apellido Materno", "Departamento",
-        "Telefono", "Edad"};
+        String[] columnas = {"id_Empleado","Primer Nombre","Segundo Nombre", "Apellido Paterno", "Apellido Materno", "Departamento",
+        "Telefono", "Fecha Nac"};
         
         modelo.setColumnIdentifiers(columnas);
         
         for(Empleado emp : empleado){
-            String[] renglon = {Integer.toString(emp.getID_EMPLEADO()),emp.getNOMBRE_EMP(),emp.getAPELLIDO_EMP1(),
+            String[] renglon = {Integer.toString(emp.getID_EMPLEADO()),emp.getNOMBRE_EMP1(), emp.getNOMBRE_EMP2(), emp.getAPELLIDO_EMP1(),
                 emp.getAPELLIDO_EMP2(),emp.getDEPART_EMP(),emp.getTELEFONO_EMP(),
-                Integer.toString(emp.getEDAD_EMP())};
+                emp.getFECHANAC_EMP().toString()};
             modelo.addRow(renglon);
         }
         jtableEmpleados.setModel(modelo);
@@ -61,16 +63,17 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
     
     public void actualizarEmpleado(){
         int id = Integer.parseInt(this.jtxtIdEmpleado.getText());
-        String nom = this.jtxtNombreEmpleado.getText();
+        String nom1 = this.jtxtNombreEmpleado1.getText();
+        String nom2 = this.jtxtNombreEmpleado2.getText();
         String apd1 = this.jtxtApellido1Empleado.getText();
         String apd2 = this.jtxtApellido2Empleado.getText();
         String dep = this.jtxtDepartamentoEmpleado.getText();
         String telp = this.jtxtTelefonoEmpleado.getText();
-        int edad = Integer.valueOf(this.jtxtEdadEmpleado.getText());
+        Date edad = Date.valueOf(this.jtxtEdadEmpleado.getText());
         
         DAOEMPLEADO dao = new DAOEMPLEADO();
         
-        int res = dao.Actualizar(id, nom, apd1, apd2, dep, telp, edad);
+        int res = dao.Actualizar(id, nom1,nom2, apd1, apd2, dep, telp, edad);
         
         if(res == 1){
             JOptionPane.showMessageDialog(rootPane, "Datos del empleado se actualizaron.");
@@ -113,9 +116,13 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jtxtEdadEmpleado = new javax.swing.JTextField();
-        jtxtNombreEmpleado = new javax.swing.JTextField();
+        jtxtNombreEmpleado1 = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        jtxtNombreEmpleado2 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -128,7 +135,7 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"
             }
         ));
         jScrollPane1.setViewportView(jtableEmpleados);
@@ -137,12 +144,12 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -231,7 +238,7 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel2.setText("Nombre (S)");
+        jLabel2.setText("Primer Nombre");
 
         jtxtIdEmpleado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -261,54 +268,73 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel7.setText("Edad");
+        jLabel7.setText("Fecha de naciemiento");
 
         jtxtEdadEmpleado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jtxtNombreEmpleado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtxtNombreEmpleado1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jtxtNombreEmpleado2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel8.setText("Segundo Nombre");
+
+        jLabel9.setFont(new java.awt.Font("Nirmala UI Semilight", 3, 12)); // NOI18N
+        jLabel9.setText("Part'e Perro");
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+            .addGroup(panel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(jLabel1)
-                        .addGap(41, 41, 41)
-                        .addComponent(jtxtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jtxtApellido1Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtxtNombreEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel3)
+                                .addComponent(jtxtApellido2Empleado, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                .addComponent(jtxtNombreEmpleado2)))
+                        .addGap(69, 69, 69))
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3))
-                                .addGap(37, 37, 37)
-                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtxtNombreEmpleado)
-                                    .addComponent(jtxtApellido2Empleado)
-                                    .addComponent(jtxtApellido1Empleado)))
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jtxtDepartamentoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(82, 82, 82)
-                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jtxtTelefonoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(panel1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtxtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(panel1Layout.createSequentialGroup()
+                                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jtxtDepartamentoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5))
+                                    .addGap(27, 27, 27)
+                                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jtxtTelefonoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(27, 27, 27)
+                                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel7)
-                                        .addGap(84, 84, 84))
-                                    .addComponent(jtxtEdadEmpleado))))
-                        .addGap(21, 21, 21))))
+                                        .addComponent(jtxtEdadEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 19, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addContainerGap())
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,20 +343,24 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(12, 12, 12)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtApellido1Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxtNombreEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxtNombreEmpleado2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel4))
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxtApellido2Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jtxtApellido1Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -343,7 +373,11 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
                     .addComponent(jtxtDepartamentoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtxtTelefonoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtxtEdadEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -355,7 +389,7 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -364,12 +398,12 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -377,20 +411,21 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
 
     private void btnAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpleadoActionPerformed
         // TODO add your handling code here:
-        String nomb = jtxtNombreEmpleado.getText();
+        String nomb1 = jtxtNombreEmpleado1.getText();
+        String nomb2 = jtxtNombreEmpleado2.getText();
         String ape1 = jtxtApellido1Empleado.getText();
         String ape2 = jtxtApellido2Empleado.getText();
         String dep = jtxtDepartamentoEmpleado.getText();
         String tel = jtxtTelefonoEmpleado.getText();
         String edad = jtxtEdadEmpleado.getText();
 
-        if(nomb.contentEquals("")||ape1.contentEquals("")||ape2.contentEquals("")||
+        if(nomb1.contentEquals("")|| nomb2.contentEquals("")||ape1.contentEquals("")||ape2.contentEquals("")||
             dep.contentEquals("")||tel.contentEquals("")||edad.contentEquals("")){
             JOptionPane.showMessageDialog(rootPane, "Todos los campos son obligatorios.");
         }else{
             try {
-                int ed = Integer.valueOf(edad);
-                Empleado em = new DAOEMPLEADO().Insertar(nomb, ape1, ape2, dep, tel,ed);
+                Date ed = Date.valueOf(edad);
+                Empleado em = new DAOEMPLEADO().Insertar(nomb1,nomb2, ape1, ape2, dep, tel,ed);
                 JOptionPane.showMessageDialog(rootPane, "Registro Agregado.");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -411,15 +446,17 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
         }else{
             try {
                 int id = Integer.parseInt((String) this.jtableEmpleados.getValueAt(fila, 0).toString());
-                String nom = (String) this.jtableEmpleados.getValueAt(fila, 1);
-                String ap1 = (String) this.jtableEmpleados.getValueAt(fila, 2);
-                String ap2 = (String) this.jtableEmpleados.getValueAt(fila, 3);
-                String dep = (String) this.jtableEmpleados.getValueAt(fila, 4);
-                String telf = (String) this.jtableEmpleados.getValueAt(fila, 5);
-                int edad = Integer.valueOf((String) this.jtableEmpleados.getValueAt(fila, 6).toString());
+                String nom1 = (String) this.jtableEmpleados.getValueAt(fila, 1);
+                String nom2 = (String) this.jtableEmpleados.getValueAt(fila,2);
+                String ap1 = (String) this.jtableEmpleados.getValueAt(fila, 3);
+                String ap2 = (String) this.jtableEmpleados.getValueAt(fila, 4);
+                String dep = (String) this.jtableEmpleados.getValueAt(fila, 5);
+                String telf = (String) this.jtableEmpleados.getValueAt(fila, 6);
+                Date edad = Date.valueOf((String) this.jtableEmpleados.getValueAt(fila, 7).toString());
 
                 jtxtIdEmpleado.setText("" + id);
-                jtxtNombreEmpleado.setText(nom);
+                jtxtNombreEmpleado1.setText(nom1);
+                jtxtNombreEmpleado2.setText(nom2);
                 jtxtApellido1Empleado.setText(ap1);
                 jtxtApellido2Empleado.setText(ap2);
                 jtxtDepartamentoEmpleado.setText(dep);
@@ -465,19 +502,23 @@ public class InternalFrameEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTable jtableEmpleados;
     private javax.swing.JTextField jtxtApellido1Empleado;
     private javax.swing.JTextField jtxtApellido2Empleado;
     private javax.swing.JTextField jtxtDepartamentoEmpleado;
     private javax.swing.JTextField jtxtEdadEmpleado;
     private javax.swing.JTextField jtxtIdEmpleado;
-    private javax.swing.JTextField jtxtNombreEmpleado;
+    private javax.swing.JTextField jtxtNombreEmpleado1;
+    private javax.swing.JTextField jtxtNombreEmpleado2;
     private javax.swing.JTextField jtxtTelefonoEmpleado;
     private javax.swing.JPanel panel1;
     // End of variables declaration//GEN-END:variables

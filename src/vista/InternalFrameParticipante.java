@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package vista;
 
-import Modelo.DAOPARTICIPANTE;
-import Modelo.Participante;
+import java.sql.Date;
+import modelo.DAOPARTICIPANTE;
+import modelo.Participante;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,7 +30,8 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
     public void LimpirCampos() {
 
         jtxtNumeroLista.setText("");
-        jtxtNombreClienteP.setText("");
+        jtxtNombreClienteP1.setText("");
+        jtxtNombreClienteP2.setText("");
         comboActividadParticipantes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Ninguno", "Activo", "Inactivo"}));
         comboEstadoTransporteP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Ninguno", "Transporte Propio", "Transporte Contratado"}));
         comboEstadoParticipantes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Ninguno", "Pago Pendiente", "Pago Realizado"}));
@@ -42,14 +44,14 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
 
         DefaultTableModel modelo = new DefaultTableModel();
 
-        String[] columnas = {"Nº Lista", "Nombre", "Transporte", "Actividad", "Estado Deposito", "Edad", "Nº Reserva"};
+        String[] columnas = {"Nº Lista", "Primer Nombre", "Segundo Nombre", "Transporte", "Actividad", "Deposito", "Fecha Nac", "Nº Reserva"};
 
         modelo.setColumnIdentifiers(columnas);
 
         for (Participante pr : participantes) {
-            String[] renglon = {Integer.toString(pr.getNUMERO_LIST()), pr.getNOMBRE_PART(),
-                pr.getESTADO_PARTICIPANTE(), pr.getESTADO_DEPOSITO(), pr.getESTADO_TRANSPORTE(),
-                Integer.toString(pr.getEDAD_PART()),
+            String[] renglon = {Integer.toString(pr.getNUMERO_LIST()), pr.getNOMBRE_PART1(), pr.getNOMBRE_PART2(),
+                pr.getESTADO_P(), pr.getESTADO_DEPO(), pr.getESTADO_TRANSP(),
+                pr.getFECHANAC_PART().toString(),
                 Integer.toString(pr.getN_RESERVA())};
 
             modelo.addRow(renglon);
@@ -59,16 +61,17 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
 
     public void actualizarParticipantes() {
         int numL = Integer.parseInt(this.jtxtNumeroLista.getText());
-        String nomp = this.jtxtNombreClienteP.getText();
+        String nomp1 = this.jtxtNombreClienteP1.getText();
+        String nomp2 = this.jtxtNombreClienteP2.getText();
         String edp = this.comboEstadoTransporteP.getSelectedItem().toString();
         String actv = this.comboActividadParticipantes.getSelectedItem().toString();
         String ed = this.comboEstadoParticipantes.getSelectedItem().toString();
-        int edadPart = Integer.parseInt(this.jtxtEdadClienteP.getText());
+        Date edadPart = Date.valueOf(this.jtxtEdadClienteP.getText());
         int nreserv = Integer.parseInt(this.jtxtNumeroReservaP.getText());
 
         DAOPARTICIPANTE dao = new DAOPARTICIPANTE();
 
-        int res = dao.Actualizar(numL, nomp, edp, actv, ed, edadPart, nreserv);
+        int res = dao.Actualizar(numL, nomp1, nomp2, edp, actv, ed, edadPart, nreserv);
 
         if (res == 1) {
             JOptionPane.showMessageDialog(rootPane, "Participante Actualizado.");
@@ -98,7 +101,7 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jtxtNumeroLista = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jtxtNombreClienteP = new javax.swing.JTextField();
+        jtxtNombreClienteP1 = new javax.swing.JTextField();
         comboEstadoTransporteP = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         comboActividadParticipantes = new javax.swing.JComboBox<>();
@@ -111,6 +114,10 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         comboEstadoParticipantes = new javax.swing.JComboBox<>();
+        jtxtNombreClienteP2 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
         panel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtableClientesRegistrados = new javax.swing.JTable();
@@ -180,14 +187,14 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 260, Short.MAX_VALUE)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 261, Short.MAX_VALUE)))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 260, Short.MAX_VALUE)
                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 261, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,9 +237,9 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel3.setText("Nombre Cliente");
+        jLabel3.setText("Primer Nombre");
 
-        jtxtNombreClienteP.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtxtNombreClienteP1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         comboEstadoTransporteP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Transporte Propio", "Transporte Contratado" }));
 
@@ -254,7 +261,7 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel4.setText("Edad");
+        jLabel4.setText("Fecha de nacimiento");
 
         jtxtNumeroReservaP.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -264,6 +271,15 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
 
         comboEstadoParticipantes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Pago Pendiente", "Pago Realizado" }));
 
+        jtxtNombreClienteP2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel8.setText("Segundo Nombre");
+
+        jLabel1.setFont(new java.awt.Font("Nirmala UI Semilight", 3, 12)); // NOI18N
+        jLabel1.setText("Part'e Perro");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -272,38 +288,52 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtxtNombreClienteP, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
-                            .addComponent(jtxtEdadClienteP)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(54, 54, 54)
-                            .addComponent(jLabel2)
-                            .addGap(18, 18, 18)
-                            .addComponent(jtxtNumeroLista, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(47, 47, 47)
-                            .addComponent(jLabel9)
-                            .addGap(18, 18, 18)
-                            .addComponent(jtxtNumeroReservaP, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(comboEstadoTransporteP, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(46, 46, 46)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(comboActividadParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(31, 31, 31)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(comboEstadoParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7))))
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(54, 54, 54)
+                                    .addComponent(jLabel2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jtxtNumeroLista, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(47, 47, 47)
+                                    .addComponent(jLabel9)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jtxtNumeroReservaP, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(comboEstadoTransporteP, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(46, 46, 46)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(comboActividadParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(31, 31, 31)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(comboEstadoParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel7))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(39, 39, 39)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jtxtEdadClienteP, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                                    .addComponent(jtxtNombreClienteP2)
+                                    .addComponent(jtxtNombreClienteP1))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(24, 24, 24))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,15 +346,19 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
                     .addComponent(jtxtNumeroReservaP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtNombreClienteP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jtxtEdadClienteP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtxtNombreClienteP1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtxtNombreClienteP2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtxtEdadClienteP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -336,6 +370,10 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
                     .addComponent(comboEstadoTransporteP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboActividadParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboEstadoParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -355,12 +393,12 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2)
                 .addContainerGap())
         );
 
@@ -370,24 +408,24 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(panel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -395,25 +433,27 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
 
     private void btnAgregarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarReservaActionPerformed
         // TODO add your handling code here:
-        String nomb = jtxtNombreClienteP.getText();
+        String nomb1 = jtxtNombreClienteP1.getText();
+        String nomb2 = jtxtNombreClienteP2.getText();
         String estTrans = comboEstadoTransporteP.getSelectedItem().toString();
         String act = comboActividadParticipantes.getSelectedItem().toString();
         String estDepo = comboEstadoParticipantes.getSelectedItem().toString();
         String edad = jtxtEdadClienteP.getText();
         String nreser = jtxtNumeroReservaP.getText();
 
-        if (nreser.contentEquals("") || nomb.contentEquals("") || edad.contentEquals("") || estTrans.contentEquals("")
+        if (nreser.contentEquals("") || nomb1.contentEquals("") || nomb2.contentEquals("") || edad.contentEquals("") || estTrans.contentEquals("")
                 || act.contentEquals("") || estDepo.contentEquals("")) {
             JOptionPane.showMessageDialog(rootPane, "No se realizo ningun cambio.");
         } else {
             try {
-                int nr = Integer.valueOf(nreser);
-                int edadP = Integer.valueOf(edad);
+                
                 String estadoT = comboEstadoTransporteP.getSelectedItem().toString();
                 String actividad = comboActividadParticipantes.getSelectedItem().toString();
                 String estadoDepo = comboEstadoParticipantes.getSelectedItem().toString();
+                Date edadP = Date.valueOf(edad);
+                int nr = Integer.valueOf(nreser);
 
-                Participante pts = new DAOPARTICIPANTE().Insertar(nomb, estadoT, actividad, estadoDepo, edadP, nr);
+                Participante pts = new DAOPARTICIPANTE().Insertar(nomb1, nomb2, estadoT, actividad, estadoDepo, edadP, nr);
                 JOptionPane.showMessageDialog(rootPane, "Registro agregado.");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -433,20 +473,23 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
         } else {
             try {
                 int numList = Integer.parseInt((String) this.jtableClientesRegistrados.getValueAt(fila, 0));
-                String nomP = (String) this.jtableClientesRegistrados.getValueAt(fila, 1);
-                String estT = (String) this.jtableClientesRegistrados.getValueAt(fila, 2);
-                String acti = (String) this.jtableClientesRegistrados.getValueAt(fila, 3);
-                String estDepo = (String) this.jtableClientesRegistrados.getValueAt(fila, 4).toString();
-                int edadPart = Integer.parseInt((String) this.jtableClientesRegistrados.getValueAt(fila, 5));
-                int nreserva = Integer.parseInt((String) this.jtableClientesRegistrados.getValueAt(fila, 6));
+                String nomP1 = (String) this.jtableClientesRegistrados.getValueAt(fila, 1);
+                String nomP2 = (String) this.jtableClientesRegistrados.getValueAt(fila, 2);
+                String estT = (String) this.jtableClientesRegistrados.getValueAt(fila, 3).toString();
+                String acti = (String) this.jtableClientesRegistrados.getValueAt(fila, 4).toString();
+                String estDepo = (String) this.jtableClientesRegistrados.getValueAt(fila, 5).toString();
+                Date edadPart = Date.valueOf((String) this.jtableClientesRegistrados.getValueAt(fila, 6).toString());
+                int nreserva = Integer.parseInt((String) this.jtableClientesRegistrados.getValueAt(fila, 7));
 
                 jtxtNumeroLista.setText("" + numList);
-                jtxtEdadClienteP.setText(String.valueOf(edadPart));
+                jtxtNombreClienteP1.setText(nomP1);
+                jtxtNombreClienteP2.setText(nomP2);
                 comboEstadoTransporteP.setSelectedItem(estT);
                 comboActividadParticipantes.setSelectedItem(acti);
                 comboEstadoParticipantes.setSelectedItem(estDepo);
+                jtxtEdadClienteP.setText(String.valueOf(edadPart));
                 jtxtNumeroReservaP.setText(String.valueOf(nreserva));
-                jtxtNombreClienteP.setText(nomP);
+                
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -485,12 +528,14 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> comboActividadParticipantes;
     private javax.swing.JComboBox<String> comboEstadoParticipantes;
     private javax.swing.JComboBox<String> comboEstadoTransporteP;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -500,9 +545,11 @@ public class InternalFrameParticipante extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTable jtableClientesRegistrados;
     private javax.swing.JTextField jtxtEdadClienteP;
-    private javax.swing.JTextField jtxtNombreClienteP;
+    private javax.swing.JTextField jtxtNombreClienteP1;
+    private javax.swing.JTextField jtxtNombreClienteP2;
     private javax.swing.JTextField jtxtNumeroLista;
     private javax.swing.JTextField jtxtNumeroReservaP;
     private javax.swing.JPanel panel1;

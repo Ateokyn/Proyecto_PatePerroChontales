@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package modelo;
 
 import java.sql.Date;
 
@@ -14,21 +14,18 @@ import java.sql.Date;
 public class Reserva {
 
     private int N_RESERVA;
-    private String ESTADO_RESERVA;
     private Date FECHA_RESERVA;
     private int ID_GIRA;
     private int ID_CLIENTE;
 
-    public Reserva(int N_RESERVA, String ESTADO_RESERVA, Date FECHA_RESERVA, int ID_GIRA, int ID_CLIENTE) {
+    public Reserva(int N_RESERVA, Date FECHA_RESERVA, int ID_GIRA, int ID_CLIENTE) {
         this.N_RESERVA = N_RESERVA;
-        this.ESTADO_RESERVA = ESTADO_RESERVA;
         this.FECHA_RESERVA = FECHA_RESERVA;
         this.ID_GIRA = ID_GIRA;
         this.ID_CLIENTE = ID_CLIENTE;
     }
 
-    public Reserva(String ESTADO_RESERVA, Date FECHA_RESERVA, int ID_GIRA, int ID_CLIENTE) {
-        this.ESTADO_RESERVA = ESTADO_RESERVA;
+    public Reserva(Date FECHA_RESERVA, int ID_GIRA, int ID_CLIENTE) {
         this.FECHA_RESERVA = FECHA_RESERVA;
         this.ID_GIRA = ID_GIRA;
         this.ID_CLIENTE = ID_CLIENTE;
@@ -40,14 +37,6 @@ public class Reserva {
 
     public void setN_RESERVA(int N_RESERVA) {
         this.N_RESERVA = N_RESERVA;
-    }
-
-    public String getESTADO_RESERVA() {
-        return ESTADO_RESERVA;
-    }
-
-    public void setESTADO_RESERVA(String ESTADO_RESERVA) {
-        this.ESTADO_RESERVA = ESTADO_RESERVA;
     }
 
     public Date getFECHA_RESERVA() {

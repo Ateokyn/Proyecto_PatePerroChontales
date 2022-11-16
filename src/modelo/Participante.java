@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package modelo;
+
+import java.sql.Date;
 
 /**
  *
@@ -12,29 +14,32 @@ package Modelo;
 public class Participante {
 
     private int NUMERO_LIST;
-    private String NOMBRE_PART;
-    private String ESTADO_PARTICIPANTE;
-    private String ESTADO_DEPOSITO;
-    private String ESTADO_TRANSPORTE;
-    private int EDAD_PART;
+    private String NOMBRE_PART1;
+    private String NOMBRE_PART2;
+    private String ESTADO_P;
+    private String ESTADO_DEPO;
+    private String ESTADO_TRANSP;
+    private Date FECHANAC_PART;
     private int N_RESERVA;
 
-    public Participante(int NUMERO_LIST, String NOMBRE_PART, String ESTADO_PARTICIPANTE, String ESTADO_DEPOSITO, String ESTADO_TRANSPORTE, int EDAD_PART, int N_RESERVA) {
+    public Participante(int NUMERO_LIST, String NOMBRE_PART1, String NOMBRE_PART2, String ESTADO_P, String ESTADO_DEPO, String ESTADO_TRANSP, Date FECHANAC_PART, int N_RESERVA) {
         this.NUMERO_LIST = NUMERO_LIST;
-        this.NOMBRE_PART = NOMBRE_PART;
-        this.ESTADO_PARTICIPANTE = ESTADO_PARTICIPANTE;
-        this.ESTADO_DEPOSITO = ESTADO_DEPOSITO;
-        this.ESTADO_TRANSPORTE = ESTADO_TRANSPORTE;
-        this.EDAD_PART = EDAD_PART;
+        this.NOMBRE_PART1 = NOMBRE_PART1;
+        this.NOMBRE_PART2 = NOMBRE_PART2;
+        this.ESTADO_P = ESTADO_P;
+        this.ESTADO_DEPO = ESTADO_DEPO;
+        this.ESTADO_TRANSP = ESTADO_TRANSP;
+        this.FECHANAC_PART = FECHANAC_PART;
         this.N_RESERVA = N_RESERVA;
     }
 
-    public Participante(String NOMBRE_PART, String ESTADO_PARTICIPANTE, String ESTADO_DEPOSITO, String ESTADO_TRANSPORTE, int EDAD_PART, int N_RESERVA) {
-        this.NOMBRE_PART = NOMBRE_PART;
-        this.ESTADO_PARTICIPANTE = ESTADO_PARTICIPANTE;
-        this.ESTADO_DEPOSITO = ESTADO_DEPOSITO;
-        this.ESTADO_TRANSPORTE = ESTADO_TRANSPORTE;
-        this.EDAD_PART = EDAD_PART;
+    public Participante(String NOMBRE_PART1, String NOMBRE_PART2, String ESTADO_P, String ESTADO_DEPO, String ESTADO_TRANSP, Date FECHANAC_PART, int N_RESERVA) {
+        this.NOMBRE_PART1 = NOMBRE_PART1;
+        this.NOMBRE_PART2 = NOMBRE_PART2;
+        this.ESTADO_P = ESTADO_P;
+        this.ESTADO_DEPO = ESTADO_DEPO;
+        this.ESTADO_TRANSP = ESTADO_TRANSP;
+        this.FECHANAC_PART = FECHANAC_PART;
         this.N_RESERVA = N_RESERVA;
     }
 
@@ -46,44 +51,52 @@ public class Participante {
         this.NUMERO_LIST = NUMERO_LIST;
     }
 
-    public String getNOMBRE_PART() {
-        return NOMBRE_PART;
+    public String getNOMBRE_PART1() {
+        return NOMBRE_PART1;
     }
 
-    public void setNOMBRE_PART(String NOMBRE_PART) {
-        this.NOMBRE_PART = NOMBRE_PART;
+    public void setNOMBRE_PART1(String NOMBRE_PART1) {
+        this.NOMBRE_PART1 = NOMBRE_PART1;
     }
 
-    public String getESTADO_PARTICIPANTE() {
-        return ESTADO_PARTICIPANTE;
+    public String getNOMBRE_PART2() {
+        return NOMBRE_PART2;
     }
 
-    public void setESTADO_PARTICIPANTE(String ESTADO_PARTICIPANTE) {
-        this.ESTADO_PARTICIPANTE = ESTADO_PARTICIPANTE;
+    public void setNOMBRE_PART2(String NOMBRE_PART2) {
+        this.NOMBRE_PART2 = NOMBRE_PART2;
     }
 
-    public String getESTADO_DEPOSITO() {
-        return ESTADO_DEPOSITO;
+    public String getESTADO_P() {
+        return ESTADO_P;
     }
 
-    public void setESTADO_DEPOSITO(String ESTADO_DEPOSITO) {
-        this.ESTADO_DEPOSITO = ESTADO_DEPOSITO;
+    public void setESTADO_P(String ESTADO_P) {
+        this.ESTADO_P = ESTADO_P;
     }
 
-    public String getESTADO_TRANSPORTE() {
-        return ESTADO_TRANSPORTE;
+    public String getESTADO_DEPO() {
+        return ESTADO_DEPO;
     }
 
-    public void setESTADO_TRANSPORTE(String ESTADO_TRANSPORTE) {
-        this.ESTADO_TRANSPORTE = ESTADO_TRANSPORTE;
+    public void setESTADO_DEPO(String ESTADO_DEPO) {
+        this.ESTADO_DEPO = ESTADO_DEPO;
     }
 
-    public int getEDAD_PART() {
-        return EDAD_PART;
+    public String getESTADO_TRANSP() {
+        return ESTADO_TRANSP;
     }
 
-    public void setEDAD_PART(int EDAD_PART) {
-        this.EDAD_PART = EDAD_PART;
+    public void setESTADO_TRANSP(String ESTADO_TRANSP) {
+        this.ESTADO_TRANSP = ESTADO_TRANSP;
+    }
+
+    public Date getFECHANAC_PART() {
+        return FECHANAC_PART;
+    }
+
+    public void setFECHANAC_PART(Date FECHANAC_PART) {
+        this.FECHANAC_PART = FECHANAC_PART;
     }
 
     public int getN_RESERVA() {
@@ -94,4 +107,5 @@ public class Participante {
         this.N_RESERVA = N_RESERVA;
     }
 
+    
 }

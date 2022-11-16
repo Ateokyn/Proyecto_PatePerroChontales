@@ -3,35 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package modelo;
+
+import java.sql.Date;
 
 /**
  *
  * @author Kentry Gutter
  */
 public class Cliente {
-    
+
     private int ID_CLIENTE;
-    private String NOMBRE_C;
+    private String NOMBRE_C1;
+    private String NOMBRE_C2;
     private String APELLIDO_C1;
     private String APELLIDO_C2;
-    private int EDAD_C;
+    private Date FECHANAC_C;
     private String DEPART_C;
 
-    public Cliente(int ID_CLIENTE, String NOMBRE_C, String APELLIDO_C1, String APELLIDO_C2, int EDAD_C, String DEPART_C) {
+    public Cliente(int ID_CLIENTE, String NOMBRE_C1, String NOMBRE_C2, String APELLIDO_C1, String APELLIDO_C2, Date FECHANAC_C, String DEPART_C) {
         this.ID_CLIENTE = ID_CLIENTE;
-        this.NOMBRE_C = NOMBRE_C;
+        this.NOMBRE_C1 = NOMBRE_C1;
+        this.NOMBRE_C2 = NOMBRE_C2;
         this.APELLIDO_C1 = APELLIDO_C1;
         this.APELLIDO_C2 = APELLIDO_C2;
-        this.EDAD_C = EDAD_C;
+        this.FECHANAC_C = FECHANAC_C;
         this.DEPART_C = DEPART_C;
     }
 
-    public Cliente(String NOMBRE_C, String APELLIDO_C1, String APELLIDO_C2, int EDAD_C, String DEPART_C) {
-        this.NOMBRE_C = NOMBRE_C;
+    public Cliente(String NOMBRE_C1, String NOMBRE_C2, String APELLIDO_C1, String APELLIDO_C2, Date FECHANAC_C, String DEPART_C) {
+        this.NOMBRE_C1 = NOMBRE_C1;
+        this.NOMBRE_C2 = NOMBRE_C2;
         this.APELLIDO_C1 = APELLIDO_C1;
         this.APELLIDO_C2 = APELLIDO_C2;
-        this.EDAD_C = EDAD_C;
+        this.FECHANAC_C = FECHANAC_C;
         this.DEPART_C = DEPART_C;
     }
 
@@ -43,12 +48,20 @@ public class Cliente {
         this.ID_CLIENTE = ID_CLIENTE;
     }
 
-    public String getNOMBRE_C() {
-        return NOMBRE_C;
+    public String getNOMBRE_C1() {
+        return NOMBRE_C1;
     }
 
-    public void setNOMBRE_C(String NOMBRE_C) {
-        this.NOMBRE_C = NOMBRE_C;
+    public void setNOMBRE_C1(String NOMBRE_C1) {
+        this.NOMBRE_C1 = NOMBRE_C1;
+    }
+
+    public String getNOMBRE_C2() {
+        return NOMBRE_C2;
+    }
+
+    public void setNOMBRE_C2(String NOMBRE_C2) {
+        this.NOMBRE_C2 = NOMBRE_C2;
     }
 
     public String getAPELLIDO_C1() {
@@ -67,12 +80,12 @@ public class Cliente {
         this.APELLIDO_C2 = APELLIDO_C2;
     }
 
-    public int getEDAD_C() {
-        return EDAD_C;
+    public Date getFECHANAC_C() {
+        return FECHANAC_C;
     }
 
-    public void setEDAD_C(int EDAD_C) {
-        this.EDAD_C = EDAD_C;
+    public void setFECHANAC_C(Date FECHANAC_C) {
+        this.FECHANAC_C = FECHANAC_C;
     }
 
     public String getDEPART_C() {
@@ -82,5 +95,5 @@ public class Cliente {
     public void setDEPART_C(String DEPART_C) {
         this.DEPART_C = DEPART_C;
     }
-   
+
 }

@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package modelo;
+
+import java.sql.Date;
 
 /**
  *
@@ -12,30 +14,33 @@ package Modelo;
 public class Empleado {
 
     private int ID_EMPLEADO;
-    private String NOMBRE_EMP;
+    private String NOMBRE_EMP1;
+    private String NOMBRE_EMP2;
     private String APELLIDO_EMP1;
     private String APELLIDO_EMP2;
     private String DEPART_EMP;
     private String TELEFONO_EMP;
-    private int EDAD_EMP;
+    private Date FECHANAC_EMP;
 
-    public Empleado(int ID_EMPLEADO, String NOMBRE_EMP, String APELLIDO_EMP1, String APELLIDO_EMP2, String DEPART_EMP, String TELEFONO_EMP, int EDAD_EMP) {
+    public Empleado(int ID_EMPLEADO, String NOMBRE_EMP1, String NOMBRE_EMP2, String APELLIDO_EMP1, String APELLIDO_EMP2, String DEPART_EMP, String TELEFONO_EMP, Date FECHANAC_EMP) {
         this.ID_EMPLEADO = ID_EMPLEADO;
-        this.NOMBRE_EMP = NOMBRE_EMP;
+        this.NOMBRE_EMP1 = NOMBRE_EMP1;
+        this.NOMBRE_EMP2 = NOMBRE_EMP2;
         this.APELLIDO_EMP1 = APELLIDO_EMP1;
         this.APELLIDO_EMP2 = APELLIDO_EMP2;
         this.DEPART_EMP = DEPART_EMP;
         this.TELEFONO_EMP = TELEFONO_EMP;
-        this.EDAD_EMP = EDAD_EMP;
+        this.FECHANAC_EMP = FECHANAC_EMP;
     }
 
-    public Empleado(String NOMBRE_EMP, String APELLIDO_EMP1, String APELLIDO_EMP2, String DEPART_EMP, String TELEFONO_EMP, int EDAD_EMP) {
-        this.NOMBRE_EMP = NOMBRE_EMP;
+    public Empleado(String NOMBRE_EMP1, String NOMBRE_EMP2, String APELLIDO_EMP1, String APELLIDO_EMP2, String DEPART_EMP, String TELEFONO_EMP, Date FECHANAC_EMP) {
+        this.NOMBRE_EMP1 = NOMBRE_EMP1;
+        this.NOMBRE_EMP2 = NOMBRE_EMP2;
         this.APELLIDO_EMP1 = APELLIDO_EMP1;
         this.APELLIDO_EMP2 = APELLIDO_EMP2;
         this.DEPART_EMP = DEPART_EMP;
         this.TELEFONO_EMP = TELEFONO_EMP;
-        this.EDAD_EMP = EDAD_EMP;
+        this.FECHANAC_EMP = FECHANAC_EMP;
     }
 
     public int getID_EMPLEADO() {
@@ -46,12 +51,20 @@ public class Empleado {
         this.ID_EMPLEADO = ID_EMPLEADO;
     }
 
-    public String getNOMBRE_EMP() {
-        return NOMBRE_EMP;
+    public String getNOMBRE_EMP1() {
+        return NOMBRE_EMP1;
     }
 
-    public void setNOMBRE_EMP(String NOMBRE_EMP) {
-        this.NOMBRE_EMP = NOMBRE_EMP;
+    public void setNOMBRE_EMP1(String NOMBRE_EMP1) {
+        this.NOMBRE_EMP1 = NOMBRE_EMP1;
+    }
+
+    public String getNOMBRE_EMP2() {
+        return NOMBRE_EMP2;
+    }
+
+    public void setNOMBRE_EMP2(String NOMBRE_EMP2) {
+        this.NOMBRE_EMP2 = NOMBRE_EMP2;
     }
 
     public String getAPELLIDO_EMP1() {
@@ -86,12 +99,13 @@ public class Empleado {
         this.TELEFONO_EMP = TELEFONO_EMP;
     }
 
-    public int getEDAD_EMP() {
-        return EDAD_EMP;
+    public Date getFECHANAC_EMP() {
+        return FECHANAC_EMP;
     }
 
-    public void setEDAD_EMP(int EDAD_EMP) {
-        this.EDAD_EMP = EDAD_EMP;
+    public void setFECHANAC_EMP(Date FECHANAC_EMP) {
+        this.FECHANAC_EMP = FECHANAC_EMP;
     }
 
+    
 }
