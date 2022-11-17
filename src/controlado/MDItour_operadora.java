@@ -5,6 +5,7 @@
  */
 package controlado;
 
+import javax.swing.JOptionPane;
  import vista.*;
 /**
  *
@@ -17,6 +18,7 @@ public class MDItour_operadora extends javax.swing.JFrame {
     private InternalFrameGira gira;
     private InternalFrameParticipante participante;
     private InternalFrameReserva reserva;
+    private Bienvenida bienvenida;
     /**
      * Creates new form MDItour_operadora
      */
@@ -33,6 +35,8 @@ public class MDItour_operadora extends javax.swing.JFrame {
         desktopPane1.add(participante);
         reserva = new InternalFrameReserva();
         desktopPane1.add(reserva);
+        bienvenida = new Bienvenida();
+        desktopPane1.add(bienvenida);
     }
 
     /**
@@ -59,7 +63,7 @@ public class MDItour_operadora extends javax.swing.JFrame {
         btnVerEmpleados = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        menuBienvenida = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setExtendedState(MDItour_operadora.MAXIMIZED_BOTH);
@@ -188,9 +192,14 @@ public class MDItour_operadora extends javax.swing.JFrame {
 
         jMenu1.setText("Acerca de");
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/servicio-al-cliente.png"))); // NOI18N
-        jMenu3.setText("Desarrolladores");
-        jMenu1.add(jMenu3);
+        menuBienvenida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/servicio-al-cliente.png"))); // NOI18N
+        menuBienvenida.setText("Bienvenido");
+        menuBienvenida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBienvenidaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuBienvenida);
 
         jMenuBar1.add(jMenu1);
 
@@ -240,6 +249,11 @@ public class MDItour_operadora extends javax.swing.JFrame {
         empleado.setVisible(true);
     }//GEN-LAST:event_btnVerEmpleadosActionPerformed
 
+    private void menuBienvenidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBienvenidaActionPerformed
+        // TODO add your handling code here:
+        bienvenida.setVisible(true);
+    }//GEN-LAST:event_menuBienvenidaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -284,7 +298,6 @@ public class MDItour_operadora extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLayeredPane desktopPane1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToolBar.Separator jSeparator1;
@@ -292,6 +305,7 @@ public class MDItour_operadora extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JMenuItem menuBienvenida;
     // End of variables declaration//GEN-END:variables
 
 }
